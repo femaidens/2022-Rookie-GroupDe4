@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.ScheduleCommand;
+import frc.robot.Commands.DriveTeleop;
 import frc.robot.Commands.GetDistance;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
@@ -29,7 +30,7 @@ import frc.robot.Subsystems.Shooter;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-public static final Subsystem Shooter = null;
+  public static final Subsystem Shooter = null;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
@@ -49,15 +50,15 @@ public static final Subsystem Shooter = null;
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    drivetrain = new Drivetrain(); // must always be the first subsystem
     ult = new UltrasonicTest();
     intake = new Intake();
     m_oi = new OI();
     shooter = new Shooter();
-    drivetrain = new Drivetrain();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
-    ult.setDefaultCommand(new GetDistance());
+    drivetrain.setDefaultCommand(new DriveTeleop());
 
   }
 
@@ -127,6 +128,5 @@ public static final Subsystem Shooter = null;
   /** This function is called periodically during test mode. */
   @Override
   public void testPeriodic() {
-    Scheduler.getInstance().run();
   }
 }

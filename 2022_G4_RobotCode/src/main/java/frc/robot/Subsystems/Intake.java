@@ -24,11 +24,11 @@ public class Intake extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 	
-	public void scoopBallPiston(){
+	public void scoopBallPiston(){ // can rename as extendIntake
 		piston.set(DoubleSolenoid.Value.kForward);
   }
 
-	public void pullBackPiston(){
+	public void pullBackPiston(){ // can rename as retractIntake
 		piston.set(DoubleSolenoid.Value.kReverse);
 	}
 
