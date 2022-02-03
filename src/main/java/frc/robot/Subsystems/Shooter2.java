@@ -5,7 +5,7 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
+//import edu.wpi.first.wpilibj.DutyCycleEncoder;
 
 public class Shooter2 extends Subsystem {
 
