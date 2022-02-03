@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 
-/** Add your docs here. */
 public class Drivetrain extends Subsystem {
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
 	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);

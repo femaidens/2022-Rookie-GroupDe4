@@ -6,7 +6,6 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
-import frc.robot.Subsystems.Intake;
 
 public class ExtendPiston extends Command {
   public ExtendPiston() {

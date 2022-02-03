@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.Ultrasonic;
 import frc.robot.RobotMap;
 import frc.robot.Commands.GetDistance;
 
-/** Add your docs here. */
 public class UltrasonicTest extends Subsystem {
   public static Ultrasonic ult = new Ultrasonic(RobotMap.ultPort1, RobotMap.ultPort2);
 

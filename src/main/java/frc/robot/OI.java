@@ -4,14 +4,11 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.RobotMap;
 import frc.robot.Commands.ExtendPiston;
 import frc.robot.Commands.GetDistance;
 import frc.robot.Commands.RetractPiston;
 import frc.robot.Commands.ShootBall;
 import frc.robot.Commands.SpinMotors;
-import frc.robot.Subsystems.UltrasonicTest;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
