@@ -4,7 +4,6 @@
 
 package frc.robot.Subsystems;
 
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -13,7 +12,7 @@ import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 //one motor one piston
-/** Add your docs here. */
+
 public class Intake extends Subsystem {
 	public DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.piston1Port, RobotMap.piston2Port);
 	public CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakePort, CANSparkMax.MotorType.kBrushless);

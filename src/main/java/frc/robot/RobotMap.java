@@ -3,8 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.Subsystems.UltrasonicTest;
 
 public class RobotMap {
     public static int driveJoyPort = 1;
@@ -20,4 +18,8 @@ public class RobotMap {
     public static int frontRightPort = 11;
     public static int rearRightPort = 12;
     public static int gyroPort = 13;
+    public static int dcPort = 14;
+    public static int sPistonPort1 = 15;
+    public static int sPistonPort2 = 16;
+    public static int shooter2Port = 17;
 }
