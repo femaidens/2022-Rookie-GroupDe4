@@ -14,6 +14,7 @@ import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.UltrasonicTest;
 import frc.robot.Subsystems.Shooter;
+import frc.robot.Subsystems.Shooter2;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -27,6 +28,7 @@ public class Robot extends TimedRobot {
   public static Intake intake;
   public static Shooter shooter;
   public static Drivetrain drivetrain;
+  public static Shooter2 shooter2;
 
   @Override
   public void robotInit() {
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     m_oi = new OI();
     shooter = new Shooter();
+    shooter2 = new Shooter2();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
