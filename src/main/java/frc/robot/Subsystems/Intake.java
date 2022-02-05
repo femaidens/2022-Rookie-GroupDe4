@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 //one motor one piston
 
 public class Intake extends Subsystem {
-	public DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.piston1Port, RobotMap.piston2Port);
-	public CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakePort, CANSparkMax.MotorType.kBrushless);
+	public DoubleSolenoid intakePiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakePiston1Port, RobotMap.intakePiston2Port);
+	public CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakeMotorPort, CANSparkMax.MotorType.kBrushless);
 
   @Override
   public void initDefaultCommand() {
@@ -24,11 +24,11 @@ public class Intake extends Subsystem {
   }
 	
 	public void scoopBallPiston(){ // can rename as extendIntake
-		piston.set(DoubleSolenoid.Value.kForward);
+		intakePiston.set(DoubleSolenoid.Value.kForward);
   }
 
 	public void pullBackPiston(){ // can rename as retractIntake
-		piston.set(DoubleSolenoid.Value.kReverse);
+		intakePiston.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void spinMotor(){

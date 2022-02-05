@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Commands.DriveTeleop;
+import frc.robot.Subsystems.Climb;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.UltrasonicTest;
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public static Shooter shooter;
   public static Drivetrain drivetrain;
   public static Shooter2 shooter2;
+  public static Climb climb;
 
   @Override
   public void robotInit() {
@@ -41,6 +43,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     shooter = new Shooter();
     shooter2 = new Shooter2();
+    climb = new Climb();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
