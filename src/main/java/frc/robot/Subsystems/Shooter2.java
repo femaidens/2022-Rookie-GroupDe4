@@ -24,18 +24,21 @@ public class Shooter2 extends Subsystem {
   }
 
   public void spinDCMotor(){
-    shooter2Motor.set(-0.5);
+    double distance = 5; //experimental value; change according to distance needed
+    while(dcEncoder.getDistance() < distance){
+      shooter2Motor.set(-0.5);
+    }
   }
 
   public void stopDCMotor(){
     shooter2Motor.set(0);
   }
-
+  /*
   public void setTicks(){
     double ticks = dcEncoder.getDistancePerRotation();
     dcEncoder.setDistancePerRotation(ticks);
   }
-
+  */
   public void pushLatch(){
     shooter2Piston.set(DoubleSolenoid.Value.kForward); //release the latch
   }
