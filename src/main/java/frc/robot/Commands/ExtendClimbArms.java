@@ -17,10 +17,10 @@ public class ExtendClimbArms extends Command {
 
   @Override
   protected void execute() {
+    //autoalign method
     Robot.climb.spinClimbMotor();
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return true;
@@ -31,8 +31,6 @@ public class ExtendClimbArms extends Command {
     Robot.climb.stopClimbMotor();
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
     Robot.climb.stopClimbMotor();

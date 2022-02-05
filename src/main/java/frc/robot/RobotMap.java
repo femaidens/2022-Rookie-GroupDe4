@@ -13,12 +13,12 @@ public class RobotMap {
     public static int intakeMotorPort = 6;
     public static int leftPistonPort = 7; //old shooter
     public static int rightPistonPort = 8; //old shooter
-    public static int frontLeftPort = 9;
-    public static int rearLeftPort = 10;
-    public static int frontRightPort = 11;
-    public static int rearRightPort = 12;
+    public static int frontLeftPort = 9; //drivetrain
+    public static int rearLeftPort = 10; //drivetrain
+    public static int frontRightPort = 11; //drivetrain
+    public static int rearRightPort = 12; //drivetrain
     public static int gyroPort = 13;
-    public static int dcPort = 14;
+    public static int dcPort = 14; //absolute encoder
     public static int sPistonPort1 = 15;
     public static int sPistonPort2 = 16;
     public static int shooter2Port = 17;
@@ -28,6 +28,8 @@ public class RobotMap {
     public static int cRightPiston2Port = 21;
     public static int climbLeftPort = 22;
     public static int climbRightPort = 23;
-
-
+    public static int climbUltUnoPort1 = 24;
+    public static int climbUltUnoPort2 = 25;
+    public static int climbUltDosPort1 = 26;
+    public static int climbUltDosPort2 = 27;
 }

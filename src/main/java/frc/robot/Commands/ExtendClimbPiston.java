@@ -12,13 +12,11 @@ public class ExtendClimbPiston extends Command {
     requires(Robot.climb);
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     Robot.climb.increaseAngle();
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
   }
