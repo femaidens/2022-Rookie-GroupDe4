@@ -20,6 +20,7 @@ public class ClimbMidRung extends Command {
   @Override
   protected void execute() {
     Robot.climb.spinClimbMotor();
+    Robot.climb.reverseClimbMotor(); //pulls robot up (retracts arm)
   }
 
   @Override
@@ -30,7 +31,6 @@ public class ClimbMidRung extends Command {
   @Override
   protected void end() {
     Robot.climb.stopClimbMotor();
-    Robot.climb.reverseClimbMotor();
   }
 
   @Override
