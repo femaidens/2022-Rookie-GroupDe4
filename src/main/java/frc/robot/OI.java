@@ -4,12 +4,7 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.ExtendPiston;
-import frc.robot.Commands.GetDistance;
-import frc.robot.Commands.RetractPiston;
-import frc.robot.Commands.ShootBall;
 import frc.robot.Commands.ShootBall2;
-import frc.robot.Commands.SpinMotors;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
@@ -23,11 +18,6 @@ public class OI {
 
 
     public void bindButtons(){
-        shootBall.whenPressed(new ShootBall()); //you must have new
-        ultButton.whenPressed(new GetDistance());
-        scoopBall.whenPressed(new ExtendPiston());
-        noScoopBall.whenPressed(new RetractPiston());
-        spinMotors.whileHeld(new SpinMotors());
         shooter2.whenPressed(new ShootBall2());
     }
 }
