@@ -9,12 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Commands.DriveTeleop;
-import frc.robot.Subsystems.Drivetrain;
-import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.UltrasonicTest;
-import frc.robot.Subsystems.Shooter;
-import frc.robot.Subsystems.Shooter2;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -25,27 +20,17 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   public static UltrasonicTest ult;
-  public static Intake intake;
-  public static Shooter shooter;
-  public static Drivetrain drivetrain;
-  public static Shooter2 shooter2;
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    drivetrain = new Drivetrain(); // must always be the first subsystem
     ult = new UltrasonicTest();
-    intake = new Intake();
     m_oi = new OI();
-    shooter = new Shooter();
-    shooter2 = new Shooter2();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
-    drivetrain.setDefaultCommand(new DriveTeleop());
-
   }
 
   @Override
