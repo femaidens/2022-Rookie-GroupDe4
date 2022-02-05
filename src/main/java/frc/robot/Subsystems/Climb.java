@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Ultrasonic;
-import frc.robot.Subsystems.Drivetrain;
 
 public class Climb extends Subsystem {
   public DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.cLeftPiston1Port, RobotMap.cLeftPiston2Port);
@@ -23,20 +22,29 @@ public class Climb extends Subsystem {
   public static Ultrasonic climbUltLeft = new Ultrasonic(RobotMap.climbUltLeftPort1, RobotMap.climbUltLeftPort2);
   public static Ultrasonic climbUltRight = new Ultrasonic(RobotMap.climbUltRightPort1, RobotMap.climbUltRightPort2);
 
+  double ultLeftDistance = climbUltLeft.getRangeInches() + 0.05;
+
   @Override
   public void initDefaultCommand() {}
 
   public void driveStraightForward(){
-    if(climbUltLeft.getRangeInches() > climbUltRight.getRangeInches() || climbUltLeft.getRangeInches() < climbUltRight.getRangeInches()){
-      Drivetrain.mecan.driveCartesian(0, 0.5, 0, 0);
+    if(ultLeftDistance > climbUltRight.getRangeInches()){
+      Drivetrain.mecan.driveCartesian(0, 0.5, 0.05, 0);
     }
+    else{
+      Drivetrain.mecan.driveCartesian(0, 0.5, -0.05, 0);
+    }      
   }
 
   public void driveStraightBackward(){
-    if(climbUltLeft.getRangeInches() > climbUltRight.getRangeInches() || climbUltLeft.getRangeInches() < climbUltRight.getRangeInches()){
-      Drivetrain.mecan.driveCartesian(0, -0.5, 0, 0);
-    }  }
-
+    if(ultLeftDistance > climbUltRight.getRangeInches()){
+      Drivetrain.mecan.driveCartesian(0, -0.5, 0.05, 0);
+    }
+    else{
+      Drivetrain.mecan.driveCartesian(0, -0.5, -0.05, 0);
+    }   
+  }
+ 
   public void autoAlign(){
     // ultrasonics must be in the front of of the robot for movements to work
 
