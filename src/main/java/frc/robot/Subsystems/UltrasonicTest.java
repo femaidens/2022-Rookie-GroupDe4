@@ -17,9 +17,9 @@ public class UltrasonicTest extends Subsystem {
       // Start the ultrasonic in automatic mode
       setDefaultCommand(new GetDistance());
   }
-
-  public void getInches(){
+  
+  public double getInches(){
     Ultrasonic.setAutomaticMode(true);
-    System.out.println(ult.getRangeInches());
+    return(ult.getRangeInches());
   }
 }
