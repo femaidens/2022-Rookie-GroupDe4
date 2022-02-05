@@ -28,8 +28,8 @@ public class RobotMap {
     public static int cRightPiston2Port = 21;
     public static int climbLeftPort = 22;
     public static int climbRightPort = 23;
-    public static int climbUltUnoPort1 = 24;
-    public static int climbUltUnoPort2 = 25;
-    public static int climbUltDosPort1 = 26;
-    public static int climbUltDosPort2 = 27;
+    public static int climbUltLeftPort1 = 24;
+    public static int climbUltLeftPort2 = 25;
+    public static int climbUltRightPort1 = 26;
+    public static int climbUltRightPort2 = 27;
 }

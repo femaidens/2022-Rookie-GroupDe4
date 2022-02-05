@@ -13,17 +13,29 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.revrobotics.CANSparkMax;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import frc.robot.Subsystems.Drivetrain;
 
 public class Climb extends Subsystem {
   public DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.cLeftPiston1Port, RobotMap.cLeftPiston2Port);
   public DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.cRightPiston1Port, RobotMap.cRightPiston2Port);
 	public CANSparkMax climbLeftMotor = new CANSparkMax(RobotMap.climbLeftPort, CANSparkMax.MotorType.kBrushless);
 	public CANSparkMax climbRightMotor = new CANSparkMax(RobotMap.climbRightPort, CANSparkMax.MotorType.kBrushless);
-  public static Ultrasonic climbUltUno = new Ultrasonic(RobotMap.climbUltUnoPort1, RobotMap.climbUltUnoPort2);
-  public static Ultrasonic climbUltDos = new Ultrasonic(RobotMap.climbUltDosPort1, RobotMap.climbUltDosPort2);
+  public static Ultrasonic climbUltLeft = new Ultrasonic(RobotMap.climbUltLeftPort1, RobotMap.climbUltLeftPort2);
+  public static Ultrasonic climbUltRight = new Ultrasonic(RobotMap.climbUltRightPort1, RobotMap.climbUltRightPort2);
 
   @Override
   public void initDefaultCommand() {}
+
+  public void driveStraightForward(){
+    if(climbUltLeft.getRangeInches() > climbUltRight.getRangeInches() || climbUltLeft.getRangeInches() < climbUltRight.getRangeInches()){
+      Drivetrain.mecan.driveCartesian(0, 0.5, 0, 0);
+    }
+  }
+
+  public void driveStraightBackward(){
+    if(climbUltLeft.getRangeInches() > climbUltRight.getRangeInches() || climbUltLeft.getRangeInches() < climbUltRight.getRangeInches()){
+      Drivetrain.mecan.driveCartesian(0, -0.5, 0, 0);
+    }  }
 
   public void autoAlign(){
     // ultrasonics must be in the front of of the robot for movements to work
@@ -32,12 +44,12 @@ public class Climb extends Subsystem {
     double minWallDistance = 70; //change as needed (placeholder)    
     double maxWallDistance = 70.2;
 
-    while(climbUltUno.getRangeInches() > maxWallDistance && climbUltDos.getRangeInches() > maxWallDistance){
-      Drivetrain.mecan.driveCartesian(0, 0.5, 0, 0);
+    while(climbUltLeft.getRangeInches() > maxWallDistance && climbUltRight.getRangeInches() > maxWallDistance){
+      driveStraightForward();
     }
 
-    while(climbUltUno.getRangeInches() < minWallDistance && climbUltDos.getRangeInches() < minWallDistance){
-      Drivetrain.mecan.driveCartesian(0, -0.5, 0, 0);
+    while(climbUltLeft.getRangeInches() < minWallDistance && climbUltRight.getRangeInches() < minWallDistance){
+      driveStraightBackward();
     }
   }
 
