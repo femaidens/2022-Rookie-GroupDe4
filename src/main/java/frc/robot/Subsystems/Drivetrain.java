@@ -34,6 +34,30 @@ public class Drivetrain extends Subsystem {
     
     mecan.driveCartesian(rightJoyY, rightJoyX, leftJoyX, gyro.getAngle()); 	
   }
+  
+  public void driveStraightDistance(double distance){
+    double countDistance = 0;
+    while(countDistance < distance){
+      mecan.driveCartesian(0, 0.5, 0, 0);
+      countDistance++;
+    }
+  }
+
+  public void turnDegrees(double angle){
+    if (angle > 180) {
+      angle = -1* (360 - angle);
+    }
+    
+    while (gyro.getAngle() != angle) {
+      if (gyro.getAngle() < angle){
+        mecan.driveCartesian(0, 0, 0.25, gyro.getAngle());
+      }
+
+      else {
+        mecan.driveCartesian(0, 0, -0.25, gyro.getAngle());
+      }
+    }
+  }
 
   //here goes auton
 }
