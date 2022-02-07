@@ -34,6 +34,5 @@ public class Drivetrain extends Subsystem {
     
     mecan.driveCartesian(rightJoyY, rightJoyX, leftJoyX, gyro.getAngle()); 	
   }
-
-  //here goes auton
+  //here goes auton :(((((((((((((((((((((((())))))))))))))))))))))))
 }
