@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import com.revrobotics.RelativeEncoder;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 
@@ -19,27 +20,41 @@ public class Drivetrain extends Subsystem {
 	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
   public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 	public static MecanumDrive mecan = new MecanumDrive (frontLeft, rearLeft, frontRight, rearRight);
-
+  public static RelativeEncoder frontLeftEncoder = frontLeft.getEncoder();
+  public static RelativeEncoder frontRightEncoder = frontRight.getEncoder();
+  public static RelativeEncoder rearLeftEncoder = rearLeft.getEncoder();
+  public static RelativeEncoder rearRightEncoder = rearRight.getEncoder();
 
   @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+  protected void initDefaultCommand() {}
 
   public void driveTeleop(){
     double rightJoyY = OI.driveJoy.getRawAxis(1);
     double rightJoyX = OI.driveJoy.getRawAxis(0);
 		double leftJoyX= OI.driveJoy.getRawAxis(4); //basically the zRotation 
-    
+
     mecan.driveCartesian(rightJoyY, rightJoyX, leftJoyX, gyro.getAngle()); 	
   }
-  
-  public void driveStraightDistance(double distance){
-    double countDistance = 0;
-    while(countDistance < distance){
-      mecan.driveCartesian(0, 0.5, 0, 0);
-      countDistance++;
+
+  public void driveStraightDistance(double distance){ //test for distance value in ticks
+    double fLPos = frontLeftEncoder.getPosition();
+    double fRPos = frontRightEncoder.getPosition();
+    rearLeftEncoder.getPosition();
+    rearRightEncoder.getPosition();
+    
+    while(fLPos < distance || fRPos < distance){
+      if(fLPos < fRPos){
+        frontRight.set(0.5);
+        rearLeft.set(0.5);
+        frontLeft.set(-0.5);
+        rearRight.set(-0.5);
+      }
+      else{
+        frontLeft.set(0.5);
+        rearRight.set(0.5);
+        frontRight.set(-0.5);
+        rearLeft.set(-0.5);
+      }
     }
   }
 
@@ -58,6 +73,5 @@ public class Drivetrain extends Subsystem {
       }
     }
   }
-
   //here goes auton
 }
