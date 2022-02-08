@@ -73,5 +73,11 @@ public class Drivetrain extends Subsystem {
       }
     }
   }
-  //here goes auton
+  
+  public void stopAuton(){
+    frontRight.set(0);
+    frontLeft.set(0);
+    rearRight.set(0);
+    rearLeft.set(0);
+  }
 }
