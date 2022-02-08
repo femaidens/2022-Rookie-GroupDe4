@@ -5,7 +5,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Commands.DriveAutonGroup;
 
 public class OI {
