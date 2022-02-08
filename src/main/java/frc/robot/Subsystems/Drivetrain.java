@@ -39,8 +39,6 @@ public class Drivetrain extends Subsystem {
   public void driveStraightDistance(double distance){ //test for distance value in ticks
     double fLPos = frontLeftEncoder.getPosition();
     double fRPos = frontRightEncoder.getPosition();
-    rearLeftEncoder.getPosition();
-    rearRightEncoder.getPosition();
     
     while(fLPos < distance || fRPos < distance){
       if(fLPos < fRPos){
@@ -58,6 +56,16 @@ public class Drivetrain extends Subsystem {
     }
   }
 
+  public void driveStraight(double angle){ //drives straight in any direction
+    
+    turnDegrees(angle);
+
+    frontRight.set(0.5);
+    rearLeft.set(0.5);
+    frontLeft.set(0.5);
+    rearRight.set(0.5);
+  }
+  
   public void turnDegrees(double angle){
     if (angle > 180) {
       angle = -1* (360 - angle);
@@ -73,11 +81,12 @@ public class Drivetrain extends Subsystem {
       }
     }
   }
-  
+
   public void stopAuton(){
     frontRight.set(0);
     frontLeft.set(0);
     rearRight.set(0);
     rearLeft.set(0);
   }
+  
 }

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAutonGroup extends CommandGroup {
   /** Add your docs here. */
   public DriveAutonGroup() {
-    addSequential(new DriveStraightDistance());
-    addSequential(new TurnDegrees());
+    addSequential(new DriveStraight(0));
+    addSequential(new DriveStraight(90));
   }
 }
