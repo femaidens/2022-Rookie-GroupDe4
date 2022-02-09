@@ -56,14 +56,28 @@ public class Drivetrain extends Subsystem {
     }
   }
 
-  public void driveStraight(double angle){ //drives straight in any direction
-    
-    turnDegrees(angle);
-
-    frontRight.set(0.5);
-    rearLeft.set(0.5);
-    frontLeft.set(0.5);
-    rearRight.set(0.5);
+  public void driveAuton(double speed){
+    frontLeft.set(speed);
+    frontRight.set(speed);
+    rearLeft.set(speed);
+    rearRight.set(speed);
+  }
+  
+  public void driveStraight(double angle){ 
+    while(gyro.getAngle() != angle){
+      if(gyro.getAngle() > angle){ //always to the right of wanted angle; want to move left
+        frontLeft.set(0.6);
+        rearRight.set(0.6);
+        frontRight.set(0.5);
+        rearLeft.set(0.5);
+      }
+      else{
+        frontLeft.set(0.5);
+        rearRight.set(0.5);
+        frontRight.set(0.6);
+        rearLeft.set(0.6);
+      }
+    }
   }
   
   public void turnDegrees(double angle){

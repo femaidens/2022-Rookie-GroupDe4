@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAutonGroup extends CommandGroup {
   /** Add your docs here. */
   public DriveAutonGroup() {
-    addSequential(new DriveStraight(0));
-    addSequential(new DriveStraight(90));
+    addSequential(new DriveAuton(0.5)); // argument value can be any speed; placeholder for now
+    addSequential(new DriveStraight(90)); // argument value can be any angle; placeholder for now
   }
 }
