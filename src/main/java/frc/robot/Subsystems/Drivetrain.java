@@ -35,7 +35,7 @@ public class Drivetrain extends Subsystem {
 
     mecan.driveCartesian(rightJoyY, rightJoyX, leftJoyX, gyro.getAngle()); 	
   }
-
+  /* currently not part of code :)
   public void driveStraightDistance(double distance){ //test for distance value in ticks
     double fLPos = frontLeftEncoder.getPosition();
     double fRPos = frontRightEncoder.getPosition();
@@ -55,27 +55,18 @@ public class Drivetrain extends Subsystem {
       }
     }
   }
-
+*/
   public void driveAuton(double speed){
-    frontLeft.set(speed);
-    frontRight.set(speed);
-    rearLeft.set(speed);
-    rearRight.set(speed);
+    mecan.driveCartesian(0, speed, 0, 0);
   }
   
-  public void driveStraight(double angle){ 
+  public void driveStraight(double angle, double xSpeed){ 
     while(gyro.getAngle() != angle){
       if(gyro.getAngle() > angle){ //always to the right of wanted angle; want to move left
-        frontLeft.set(0.6);
-        rearRight.set(0.6);
-        frontRight.set(0.5);
-        rearLeft.set(0.5);
+        mecan.driveCartesian(0, xSpeed, -0.05, gyro.getAngle());
       }
       else{
-        frontLeft.set(0.5);
-        rearRight.set(0.5);
-        frontRight.set(0.6);
-        rearLeft.set(0.6);
+        mecan.driveCartesian(0, xSpeed, 0.05, gyro.getAngle());
       }
     }
   }
@@ -87,20 +78,16 @@ public class Drivetrain extends Subsystem {
     
     while (gyro.getAngle() != angle) {
       if (gyro.getAngle() < angle){
-        mecan.driveCartesian(0, 0, 0.25, gyro.getAngle());
+        mecan.driveCartesian(0, 0, 0.05, gyro.getAngle());
       }
 
       else {
-        mecan.driveCartesian(0, 0, -0.25, gyro.getAngle());
+        mecan.driveCartesian(0, 0, -0.05, gyro.getAngle());
       }
     }
   }
 
   public void stopAuton(){
-    frontRight.set(0);
-    frontLeft.set(0);
-    rearRight.set(0);
-    rearLeft.set(0);
+    mecan.driveCartesian(0, 0, 0, gyro.getAngle());
   }
-  
 }

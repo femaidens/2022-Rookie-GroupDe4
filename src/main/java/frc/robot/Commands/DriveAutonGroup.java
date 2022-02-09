@@ -10,6 +10,6 @@ public class DriveAutonGroup extends CommandGroup {
   /** Add your docs here. */
   public DriveAutonGroup() {
     addSequential(new DriveAuton(0.5)); // argument value can be any speed; placeholder for now
-    addSequential(new DriveStraight(90)); // argument value can be any angle; placeholder for now
+    addSequential(new DriveStraight(90, 0.3)); // argument value can be any angle; placeholder for now
   }
 }

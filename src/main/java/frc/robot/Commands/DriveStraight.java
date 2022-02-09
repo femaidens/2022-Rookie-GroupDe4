@@ -9,10 +9,12 @@ import frc.robot.Robot;
 
 public class DriveStraight extends Command {
   public double angle;
+  public double speed;
 
-  public DriveStraight(double a) {
+  public DriveStraight(double a, double s) {
     requires(Robot.drivetrain);
     angle = a;
+    speed = s;
   }
 
   // Called just before this Command runs the first time
@@ -22,7 +24,7 @@ public class DriveStraight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.driveStraight(angle);
+    Robot.drivetrain.driveStraight(angle, speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
