@@ -61,28 +61,41 @@ public class Drivetrain extends Subsystem {
   }
   
   public void driveStraight(double angle, double xSpeed){ 
-    while(gyro.getAngle() != angle){
-      if(gyro.getAngle() > angle){ //always to the right of wanted angle; want to move left
+    double minA = angle - 1;
+    double maxA = angle + 1;
+
+    while(gyro.getAngle() < minA || gyro.getAngle() > maxA){
+      if(gyro.getAngle() > maxA){ //always to the right of wanted angle; want to move left
         mecan.driveCartesian(0, xSpeed, -0.05, gyro.getAngle());
       }
-      else{
+      else if(gyro.getAngle() < minA){
         mecan.driveCartesian(0, xSpeed, 0.05, gyro.getAngle());
+      }
+      else{
+        mecan.driveCartesian(0, xSpeed, 0, gyro.getAngle());
       }
     }
   }
   
   public void turnDegrees(double angle){
+    double minA = angle - 1;
+    double maxA = angle + 1;
+
     if (angle > 180) {
       angle = -1* (360 - angle);
     }
     
-    while (gyro.getAngle() != angle) {
-      if (gyro.getAngle() < angle){
+    while (gyro.getAngle() < minA || gyro.getAngle() > maxA) {
+      if (gyro.getAngle() < minA){
         mecan.driveCartesian(0, 0, 0.05, gyro.getAngle());
       }
 
-      else {
+      else if (gyro.getAngle() > maxA){
         mecan.driveCartesian(0, 0, -0.05, gyro.getAngle());
+      }
+      
+      else{
+        mecan.driveCartesian(0, 0, 0, gyro.getAngle());
       }
     }
   }
