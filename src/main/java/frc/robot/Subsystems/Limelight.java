@@ -22,6 +22,6 @@ public class Limelight extends Subsystem {
   }
 
   public void getCrosshairDis(){
-    System.out.println("tx value: " + tx + "\n" + "ty value: " + ty);
+    System.out.println("tx value: " + tx.getDouble(0) + "\n" + "ty value: " + ty.getDouble(0));
   }
 }
