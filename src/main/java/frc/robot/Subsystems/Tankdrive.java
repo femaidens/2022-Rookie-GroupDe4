@@ -38,12 +38,24 @@ public class Tankdrive extends Subsystem {
     rearRight.set(rightJoy);
   }
 
-  public void driveStraight(double speed){
-    frontLeft.set(-speed);
-    midLeft.set(-speed);
-    rearLeft.set(-speed);
+  public static void driveAuton(double rightSpeed, double leftSpeed) {
+    frontLeft.set(leftSpeed);
+    midLeft.set(leftSpeed);
+    rearLeft.set(leftSpeed);
+    frontRight.set(rightSpeed);
+    midRight.set(rightSpeed);
+    rearRight.set(rightSpeed);
+  }
+
+  public void driveStraightRight(double speed){
     frontRight.set(speed);
     midRight.set(speed);
     rearRight.set(speed);
+  }
+
+  public void driveStraightLeft(double speed){
+    frontLeft.set(-speed);
+    midLeft.set(-speed);
+    rearLeft.set(-speed);
   }
 }

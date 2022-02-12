@@ -21,7 +21,7 @@ public class TankAutoalign extends Command {
   static double adjust = 0.0;
   static double time = 0.1;
 
-  public TankAutoalign() {
+  public TankAutoalign(double rightSpeed, double leftSpeed) {
     requires(Robot.tankdrive);
     requires(Robot.tlimelight);
   }
@@ -43,7 +43,9 @@ public class TankAutoalign extends Command {
     else if (current_error < -min_error){
       adjust -= min_command;
     }
-    Robot.tankdrive.driveStraight(speed + adjust*.01);
+    Robot.tankdrive.driveStraightRight(speed + adjust*.01);
+    Robot.tankdrive.driveStraightLeft(speed - adjust*.01);
+
   }
 
   @Override

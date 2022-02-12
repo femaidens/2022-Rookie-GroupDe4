@@ -5,7 +5,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.DriveAutonGroup;
 
 public class OI {
     public static Joystick tankJoy = new Joystick(RobotMap.tankJoyPort);
+    public static Button driveAuton = new JoystickButton(tankJoy, 1);
+    
+    public void bindButtons(){
+        driveAuton.whenPressed(new DriveAutonGroup());
+    }
 }
