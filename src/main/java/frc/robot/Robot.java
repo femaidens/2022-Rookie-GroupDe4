@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Subsystems.Limelight;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -17,6 +18,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
+  public static Limelight limelight;
 
   @Override
   public void robotInit() {
@@ -24,6 +26,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
+    limelight = new Limelight();
     //m_oi.bindButtons();
     System.out.println("init");
   }
