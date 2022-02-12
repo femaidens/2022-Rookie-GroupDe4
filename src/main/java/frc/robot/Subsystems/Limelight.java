@@ -11,10 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Limelight extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
-  public static NetworkTableEntry tv = lmTable.getEntry("tv"); //checks for valid targets
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair
-  public static NetworkTableEntry ta = lmTable.getEntry("ta"); //target area
-  public static NetworkTableEntry ts = lmTable.getEntry("ts"); //skew
   public static NetworkTableEntry ty = lmTable.getEntry("ty"); //vertical distance from crosshair 
 
   @Override
