@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.Commands.LimelightTest;
-import frc.robot.Subsystems.Limelight;
+import frc.robot.Subsystems.LimelightTest1;
 
 public class Robot extends TimedRobot {
   //private static final String kDefaultAuto = "Default";
@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
   //private final SendableChooser<String> m_chooser = new SendableChooser<>();
   //private final SendableChooser<String> limelightChooser = new SendableChooser<>();
   public static OI m_oi;
-  public static Limelight limelight;
+  public static LimelightTest1 limelight;
   //Command limelightCommand;
 
   @Override
@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
     //m_chooser.addOption("My Auto", kCustomAuto);
     //SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
-    limelight = new Limelight();
+    limelight = new LimelightTest1();
     //limelightCommand = new LimelightTest();
     //limelightChooser.setDefaultOption("Limelight Test: ", limelightAuto);
     //m_oi.bindButtons();

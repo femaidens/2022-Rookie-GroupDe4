@@ -10,7 +10,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Commands.LimelightTest;
 
-public class Limelight extends Subsystem {
+public class LimelightTest1 extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair
   public static NetworkTableEntry ty = lmTable.getEntry("ty"); //vertical distance from crosshair 
