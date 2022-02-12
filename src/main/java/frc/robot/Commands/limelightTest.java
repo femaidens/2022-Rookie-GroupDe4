@@ -7,8 +7,8 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class limelightTest extends Command {
-  public limelightTest() {
+public class LimelightTest extends Command {
+  public LimelightTest() {
     requires(Robot.limelight);
   }
 

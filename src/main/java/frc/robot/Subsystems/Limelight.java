@@ -8,7 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Commands.limelightTest;
+import frc.robot.Commands.LimelightTest;
 
 public class Limelight extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
@@ -18,7 +18,7 @@ public class Limelight extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    setDefaultCommand(new limelightTest());
+    setDefaultCommand(new LimelightTest());
   }
 
   public void getCrosshairDis(){
