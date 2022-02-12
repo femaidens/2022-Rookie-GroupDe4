@@ -5,28 +5,35 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+//import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import frc.robot.Commands.LimelightTest;
 import frc.robot.Subsystems.Limelight;
 
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+  //private static final String kDefaultAuto = "Default";
+  //private static final String kCustomAuto = "My Auto";
+  public static String limelightAuto = "limelightAuto";
   public static final Subsystem Shooter = null;
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  //private String m_autoSelected;
+  //private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  //private final SendableChooser<String> limelightChooser = new SendableChooser<>();
   public static OI m_oi;
   public static Limelight limelight;
+  //Command limelightCommand;
 
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
+    //m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
+    //m_chooser.addOption("My Auto", kCustomAuto);
+    //SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
     limelight = new Limelight();
+    //limelightCommand = new LimelightTest();
+    //limelightChooser.setDefaultOption("Limelight Test: ", limelightAuto);
     //m_oi.bindButtons();
     System.out.println("init");
   }
@@ -36,14 +43,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
+    //m_autoSelected = m_chooser.getSelected();
+    //limelightCommand.start();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
+    //System.out.println("Auto selected: " + m_autoSelected);
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    /*
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -53,6 +62,7 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
+    */
   }
 
   /** This function is called once when teleop is enabled. */
