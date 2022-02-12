@@ -10,7 +10,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /** Add your docs here. */
