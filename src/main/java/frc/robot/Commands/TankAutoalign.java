@@ -26,11 +26,9 @@ public class TankAutoalign extends Command {
     requires(Robot.tlimelight);
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {}
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     previous_error = current_error;
@@ -48,18 +46,14 @@ public class TankAutoalign extends Command {
     Robot.tankdrive.driveStraight(speed + adjust*.01);
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     return false;
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {}
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {}
 }

@@ -10,7 +10,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Commands.TankLimelightComm;
 
-/** Add your docs here. */
 public class TankLimelight extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair

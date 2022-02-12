@@ -12,13 +12,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 
-/** Add your docs here. */
 public class Tankdrive extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
   
   public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
