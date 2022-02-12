@@ -18,8 +18,8 @@ public class Robot extends TimedRobot {
   public static final Subsystem Shooter = null;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  public static OI m_oi;
   public static Tankdrive tankdrive;
+  public static OI m_oi;
   public static TankLimelight tlimelight;
 
   @Override
