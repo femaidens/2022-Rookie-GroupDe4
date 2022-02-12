@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.LimelightTest1;
 
 public class Robot extends TimedRobot {
-  //private static final String kDefaultAuto = "Default";
-  //private static final String kCustomAuto = "My Auto";
+  private static final String kDefaultAuto = "Default";
+  private static final String kCustomAuto = "My Auto";
   public static String limelightAuto = "limelightAuto";
   public static final Subsystem Shooter = null;
   //private String m_autoSelected;
