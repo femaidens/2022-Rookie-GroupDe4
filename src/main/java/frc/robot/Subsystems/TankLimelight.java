@@ -13,7 +13,7 @@ import frc.robot.Commands.TankLimelightComm;
 public class TankLimelight extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair
-  //public static NetworkTableEntry ty = lmTable.getEntry("ty"); //vertical distance from crosshair 
+  public static NetworkTableEntry ty = lmTable.getEntry("ty"); //vertical distance from crosshair 
 
   @Override
   public void initDefaultCommand() {

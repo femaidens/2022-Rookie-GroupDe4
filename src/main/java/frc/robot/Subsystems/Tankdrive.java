@@ -7,7 +7,7 @@ package frc.robot.Subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+//import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.OI;
 import frc.robot.RobotMap;
@@ -18,7 +18,7 @@ public class Tankdrive extends Subsystem {
   public void initDefaultCommand() {
   }
   
-  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+  //public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
  
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax midLeft = new CANSparkMax(RobotMap.midLeftPort, MotorType.kBrushless);
@@ -42,20 +42,26 @@ public class Tankdrive extends Subsystem {
     frontLeft.set(leftSpeed);
     midLeft.set(leftSpeed);
     rearLeft.set(leftSpeed);
-    frontRight.set(rightSpeed);
-    midRight.set(rightSpeed);
-    rearRight.set(rightSpeed);
+    frontRight.set(-rightSpeed);
+    midRight.set(-rightSpeed);
+    rearRight.set(-rightSpeed);
   }
 
-  public void driveStraightRight(double speed){
-    frontRight.set(speed);
-    midRight.set(speed);
-    rearRight.set(speed);
+  public void driveStraight(double speed, double adjust){
+    frontRight.set(speed + adjust*0.01);
+    midRight.set(speed + adjust*0.01);
+    rearRight.set(speed + adjust*0.01);
+    frontLeft.set(speed - adjust*0.01);
+    midLeft.set(speed - adjust*0.01);
+    rearLeft.set(speed - adjust*0.01);
   }
 
-  public void driveStraightLeft(double speed){
-    frontLeft.set(-speed);
-    midLeft.set(-speed);
-    rearLeft.set(-speed);
+  public void stopMotors(){
+    frontLeft.set(0);
+    midLeft.set(0);
+    rearLeft.set(0);
+    frontRight.set(0);
+    midRight.set(0);
+    rearRight.set(0);
   }
 }

@@ -29,8 +29,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     tankdrive = new Tankdrive();
     tlimelight = new TankLimelight();
+    m_oi = new OI();
 
-    //m_oi.bindButtons();
+    m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
   }
