@@ -28,7 +28,7 @@ public class Tankdrive extends Subsystem {
   public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
 
   public static void driveTeleop(){
-    double leftJoy = -OI.tankJoy.getRawAxis(0);
+    double leftJoy = -OI.tankJoy.getRawAxis(1);
     double rightJoy = OI.tankJoy.getRawAxis(5);
     frontLeft.set(leftJoy);
     midLeft.set(leftJoy);
