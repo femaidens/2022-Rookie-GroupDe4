@@ -7,7 +7,6 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DriveAutonGroup extends CommandGroup {
-  /** Add your docs here. */
   public DriveAutonGroup() {
     addSequential(new DriveAuton(0.1, 0.1));
     addSequential(new TankAutoalign(0.05));
