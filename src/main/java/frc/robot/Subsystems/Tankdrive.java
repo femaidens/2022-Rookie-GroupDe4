@@ -48,12 +48,12 @@ public class Tankdrive extends Subsystem {
   }
 
   public void driveStraight(double speed, double adjust){
-    frontRight.set(speed + adjust*0.01);
-    midRight.set(speed + adjust*0.01);
-    rearRight.set(speed + adjust*0.01);
-    frontLeft.set(-1*(speed - adjust*0.01));
-    midLeft.set(-1*(speed - adjust*0.01));
-    rearLeft.set(-1*(speed - adjust*0.01));
+    frontRight.set(-1*(speed - adjust*0.01));
+    midRight.set(-1*(speed - adjust*0.01));
+    rearRight.set(-1*(speed - adjust*0.01));
+    frontLeft.set(speed + adjust*0.01);
+    midLeft.set(speed + adjust*0.01);
+    rearLeft.set(speed + adjust*0.01);
   }
 
   public void stopMotors(){

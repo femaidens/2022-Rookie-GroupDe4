@@ -18,7 +18,7 @@ public class OI {
     
     public void bindButtons(){
         //driveAuton.whenPressed(new DriveAutonGroup());
-        driveAuton.whileHeld(new DriveAuton(0.1, 0.1));
+        //driveAuton.whileHeld(new DriveAuton(0.1, 0.1));
         alignDrive.whileHeld(new TankAutoalign(0.1));
     }
 }

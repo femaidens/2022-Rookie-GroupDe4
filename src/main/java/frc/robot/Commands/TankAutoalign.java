@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class TankAutoalign extends Command {
-  private static final double KP = 0.1;
+  private static final double KP = 0.25;
   private static final double KI = 0.0;
   private static final double KD = 0.0;
   public static double speed;
@@ -49,7 +49,7 @@ public class TankAutoalign extends Command {
 
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   @Override
