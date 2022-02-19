@@ -5,10 +5,14 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import frc.robot.RobotMap;
 
 public class Shooter2 extends Subsystem {
@@ -17,6 +21,14 @@ public class Shooter2 extends Subsystem {
   public DoubleSolenoid shooter2Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.sPistonPort1, RobotMap.sPistonPort2);
 	public CANSparkMax shooter2Motor = new CANSparkMax(RobotMap.shooter2Port, CANSparkMax.MotorType.kBrushless);
 
+  //drivetrain
+  public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
+  public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+  public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
+  public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
+  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+  public static MecanumDrive mecan = new MecanumDrive (frontLeft, rearLeft, frontRight, rearRight);
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
@@ -46,4 +58,6 @@ public class Shooter2 extends Subsystem {
   public void retractS2Piston(){
     shooter2Piston.set(DoubleSolenoid.Value.kReverse);
   }
+
+  
 }
