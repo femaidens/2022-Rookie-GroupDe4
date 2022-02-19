@@ -10,7 +10,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
-/** Add your docs here. */
 public class ShooterLimelight extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair
@@ -27,9 +26,7 @@ public class ShooterLimelight extends Subsystem {
   }
 
   public double getTYValue(){
-    System.out.println("ty vlaue: " + tx.getDouble(0));
+    System.out.println("ty vlaue: " + ty.getDouble(0));
     return ty.getDouble(0);
   }
-
-  
 }
