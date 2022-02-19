@@ -36,6 +36,7 @@ public class Shooter extends Subsystem {
   private static double min_error = 0.1;
   private static double min_command = 0.0;
   static double current_error = 0.0;
+  static double current_errorTY = 0.0;
   static double previous_error = 0.0;
   static double integral = 0.0;
   static double derivative = 0.0;
@@ -61,6 +62,7 @@ public class Shooter extends Subsystem {
   public void shooterAlign(){
     previous_error = current_error;
     current_error = 0 - Robot.slimelight.getTXValue();
+    current_errorTY = 0 - Robot.slimelight.getTYValue();
     integral += (current_error+previous_error)/2*(time);
     derivative = (current_error-previous_error)/time;
     adjust = KP*current_error + KI*integral + KD*derivative;
@@ -80,6 +82,14 @@ public class Shooter extends Subsystem {
       else{ //crosshair is facing the right direction; wants to turn left
         mecan.driveCartesian(0, 0, 0.1 - adjust, 0);
       }
+    while(current_errorTY != 0){
+      if(current_errorTY > 0){
+        mecan.driveCartesian(0.1 - adjust, 0, 0, 0);
+      }
+      else{ 
+        mecan.driveCartesian(0.1 + adjust, 0, 0, 0);
+      }
+    }
     }
   }
 }

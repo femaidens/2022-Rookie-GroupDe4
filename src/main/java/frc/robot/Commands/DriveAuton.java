@@ -7,9 +7,12 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootBall extends Command {
-  public ShootBall() {
-    requires(Robot.shooter);
+public class DriveAuton extends Command {
+  public double speed;
+
+  public DriveAuton(double s) {
+    requires(Robot.drivetrain);
+    speed = s;
   }
 
   @Override
@@ -17,7 +20,7 @@ public class ShootBall extends Command {
 
   @Override
   protected void execute() {
-    Robot.shooter.retractShooterPiston();
+    Robot.drivetrain.driveAuton(speed);
   }
 
   @Override
@@ -26,10 +29,10 @@ public class ShootBall extends Command {
   }
 
   @Override
-  protected void end() {
-    Robot.shooter.extendShooterPiston();
-  }
+  protected void end() {}
 
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    Robot.drivetrain.stopAuton();
+  }
 }

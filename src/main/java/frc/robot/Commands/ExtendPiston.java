@@ -7,18 +7,18 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootBall extends Command {
-  public ShootBall() {
-    requires(Robot.shooter);
+public class ExtendPiston extends Command {
+  public ExtendPiston() {
+    requires(Robot.intake);
   }
 
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Robot.intake.scoopBallPiston();
+  }
 
   @Override
-  protected void execute() {
-    Robot.shooter.retractShooterPiston();
-  }
+  protected void execute() {}
 
   @Override
   protected boolean isFinished() {
@@ -26,9 +26,7 @@ public class ShootBall extends Command {
   }
 
   @Override
-  protected void end() {
-    Robot.shooter.extendShooterPiston();
-  }
+  protected void end() {}
 
   @Override
   protected void interrupted() {}

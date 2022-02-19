@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Intake;
 import frc.robot.Subsystems.Shooter;
 import frc.robot.Subsystems.ShooterLimelight;
 
@@ -22,6 +24,8 @@ public class Robot extends TimedRobot {
 
   public static Shooter shooter;
   public static ShooterLimelight slimelight;
+  public static Intake intake;
+  public static Drivetrain drivetrain;
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -30,6 +34,8 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     shooter = new Shooter();
     slimelight = new ShooterLimelight();
+    intake = new Intake();
+    drivetrain = new Drivetrain();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
