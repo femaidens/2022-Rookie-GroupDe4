@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Shooter;
+import frc.robot.Subsystems.ShooterLimelight;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -20,7 +21,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   public static Shooter shooter;
-
+  public static ShooterLimelight slimelight;
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
     shooter = new Shooter();
+    slimelight = new ShooterLimelight();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
