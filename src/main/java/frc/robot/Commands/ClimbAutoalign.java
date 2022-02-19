@@ -7,25 +7,22 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ClimbMidRung extends Command {
-  public ClimbMidRung() {
+public class ClimbAutoalign extends Command {
+  public ClimbAutoalign() {
     requires(Robot.climb);
   }
 
   @Override
-  protected void initialize() {
-    Robot.climb.autoAlign();
-  }
+  protected void initialize() {}
 
   @Override
   protected void execute() {
-    Robot.climb.spinClimbMotor();
-    Robot.climb.reverseClimbMotor(); //pulls robot up (retracts arm)
+    Robot.climb.climbAutoAlign();
   }
 
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   @Override

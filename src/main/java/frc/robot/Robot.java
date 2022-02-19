@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Climb;
-import frc.robot.Subsystems.Drivetrain;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -20,7 +19,6 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
 
-  public static Drivetrain drivetrain;
   public static Climb climb;
 
   @Override
@@ -28,7 +26,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    drivetrain = new Drivetrain(); // must always be the first subsystem
     m_oi = new OI();
     climb = new Climb();
     //m_oi.bindButtons();
