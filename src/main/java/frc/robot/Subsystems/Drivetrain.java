@@ -33,7 +33,8 @@ public class Drivetrain extends Subsystem {
     double rightJoyX = OI.driveJoy.getRawAxis(0);
 		double leftJoyX= OI.driveJoy.getRawAxis(4); //basically the zRotation 
 
-    mecan.driveCartesian(rightJoyY, rightJoyX, leftJoyX, gyro.getAngle()); 	
+    mecan.driveCartesian(leftJoyX, rightJoyX, rightJoyY); //no gyro; no field orientation
+    mecan.driveCartesian(leftJoyX, rightJoyX, rightJoyY, gyro.getAngle()); //yes field orientation
   }
   /* currently not part of code :)
   public void driveStraightDistance(double distance){ //test for distance value in ticks
