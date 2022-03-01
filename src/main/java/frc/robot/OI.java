@@ -9,10 +9,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Commands.DriveAutonGroup;
 
 public class OI {
-    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-    public static Button driveAuton = new JoystickButton(driveJoy, 14);
+    public static Joystick RightJoy = new Joystick(RobotMap.RightJoyPort);
+    public static Joystick LeftJoy = new Joystick(RobotMap.LeftJoyPort);
+    //public static Button driveAuton = new JoystickButton(driveJoy, 14);
 
     public void bindButtons(){
-        driveAuton.whenPressed(new DriveAutonGroup());
+        //driveAuton.whenPressed(new DriveAutonGroup());
     }
 }

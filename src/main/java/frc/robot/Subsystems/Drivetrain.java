@@ -29,12 +29,19 @@ public class Drivetrain extends Subsystem {
   protected void initDefaultCommand() {}
 
   public void driveTeleop(){
-    double rightJoyY = OI.driveJoy.getRawAxis(1);
-    double rightJoyX = OI.driveJoy.getRawAxis(0);
-		double leftJoyX= OI.driveJoy.getRawAxis(4); //basically the zRotation 
+    //for two joysticks
+    double ySpeed = -OI.LeftJoy.getRawAxis(1);
+    double xSpeed = OI.LeftJoy.getRawAxis(0);
+		double zRotation = OI.RightJoy.getRawAxis(0); //basically the zRotation 
+    /*
+    //for controllers
+    double ySpeed = OI.driveJoy.getRawAxis(1);
+    double xSpeed = OI.driveJoy.getRawAxis(0);
+		double zRotation = OI.driveJoy.getRawAxis(4); //basically the zRotation 
+    */
 
-    mecan.driveCartesian(leftJoyX, rightJoyX, rightJoyY); //no gyro; no field orientation
-    mecan.driveCartesian(leftJoyX, rightJoyX, rightJoyY, gyro.getAngle()); //yes field orientation
+    //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
+    mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //yes field orientation
   }
   /* currently not part of code :)
   public void driveStraightDistance(double distance){ //test for distance value in ticks
@@ -67,10 +74,10 @@ public class Drivetrain extends Subsystem {
 
     while(gyro.getAngle() < minA || gyro.getAngle() > maxA){
       if(gyro.getAngle() > maxA){ //always to the right of wanted angle; want to move left
-        mecan.driveCartesian(0, xSpeed, -0.05, gyro.getAngle());
+        mecan.driveCartesian(-0.05, xSpeed, 0, gyro.getAngle());
       }
       else if(gyro.getAngle() < minA){
-        mecan.driveCartesian(0, xSpeed, 0.05, gyro.getAngle());
+        mecan.driveCartesian(0.05, xSpeed, 0, gyro.getAngle());
       }
       else{
         mecan.driveCartesian(0, xSpeed, 0, gyro.getAngle());
@@ -88,20 +95,24 @@ public class Drivetrain extends Subsystem {
     
     while (gyro.getAngle() < minA || gyro.getAngle() > maxA) {
       if (gyro.getAngle() < minA){
-        mecan.driveCartesian(0, 0, 0.05, gyro.getAngle());
+        mecan.driveCartesian(0.05, 0, 0, gyro.getAngle());
+        //mecan.driveCartesian(0.05, 0, 0, 0);
       }
 
       else if (gyro.getAngle() > maxA){
-        mecan.driveCartesian(0, 0, -0.05, gyro.getAngle());
+        mecan.driveCartesian(-0.05, 0, 0, gyro.getAngle());
+        //mecan.driveCartesian(-0.05, 0, 0, 0);
       }
       
       else{
         mecan.driveCartesian(0, 0, 0, gyro.getAngle());
+        //mecan.driveCartesian(0, 0, 0, 0);
       }
     }
   }
 
   public void stopAuton(){
     mecan.driveCartesian(0, 0, 0, gyro.getAngle());
+    //mecan.driveCartesian(0, 0, 0, 0);
   }
 }
