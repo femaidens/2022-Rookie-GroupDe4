@@ -19,7 +19,6 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
-
   public static Drivetrain drivetrain;
 
   @Override
