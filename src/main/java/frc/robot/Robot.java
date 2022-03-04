@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Subsystems.MeccaLime;
+import frc.robot.Subsystems.MeccaAutoalign;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -17,6 +19,8 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
+  public static MeccaLime meccaLime;
+  public static MeccaAutoalign meccaLign;
 
   @Override
   public void robotInit() {
@@ -24,6 +28,9 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     //m_oi.bindButtons();
+    m_oi = new OI();
+    meccaLime = new MeccaLime();
+    meccaLign = new MeccaAutoalign();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
   }

@@ -5,4 +5,9 @@
 package frc.robot;
 
 public class RobotMap {
+    public static int frontLeftPort = 10;
+    public static int rearLeftPort = 11;
+    public static int frontRightPort = 3;
+    public static int rearRightPort = 9;
+    public static int gyroPort = 0;
 }
