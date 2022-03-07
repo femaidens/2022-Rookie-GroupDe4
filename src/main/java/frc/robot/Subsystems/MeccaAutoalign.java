@@ -45,9 +45,9 @@ public class MeccaAutoalign extends Subsystem {
 
   public void meccalign(){
     previous_error_tx = current_error_tx;
-    current_error_tx = 0 - Robot.meccaLime.getTXValue(); 
-    //negative error value; robot is to the right of the crosshair
-    //positive error value; robot is to the left of the crosshair
+    current_error_tx = Robot.meccaLime.getTXValue(); 
+    //negative error value; robot is to the left of the crosshair
+    //positive error value; robot is to the right of the crosshair
     integral += (current_error_tx + previous_error_tx)/2*(time);
     derivative = (current_error_tx - previous_error_tx)/time;
     adjust = KP*current_error_tx + KI*integral + KD*derivative;
@@ -59,13 +59,17 @@ public class MeccaAutoalign extends Subsystem {
     else if (current_error_tx < -min_error){
       adjust -= min_command;
     }
+    
+    else{
+      adjust += 0;
+    }
 
     while(current_error_tx != 0){
       if(current_error_tx > 0){ //crosshair is facing the right direction; wants to turn left
-        mecan.driveCartesian(0.1 + adjust, 0, 0, gyro.getAngle());
+        mecan.driveCartesian(adjust, 0, 0, gyro.getAngle());
       }
       else{ //crosshair is facing the right direction; wants to turn left
-        mecan.driveCartesian(0.1 - adjust, 0, 0, gyro.getAngle());
+        mecan.driveCartesian(-adjust, 0, 0, gyro.getAngle());
       }
     }
   }
