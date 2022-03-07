@@ -42,7 +42,12 @@ public class Drivetrain extends Subsystem {
 
     //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
     mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //yes field orientation
+    System.out.println("front left voltage: " + frontLeft.getBusVoltage()); //finds voltage for each wheel
+    System.out.println("front right voltage: " + frontRight.getBusVoltage());
+    System.out.println("rear left voltage: " + rearLeft.getBusVoltage());
+    System.out.println("rear right voltage: " + rearRight.getBusVoltage());
   }
+  
   /* currently not part of code :)
   public void driveStraightDistance(double distance){ //test for distance value in ticks
     double fLPos = frontLeftEncoder.getPosition();
