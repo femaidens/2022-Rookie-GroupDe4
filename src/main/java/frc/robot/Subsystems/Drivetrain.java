@@ -41,7 +41,7 @@ public class Drivetrain extends Subsystem {
     */
 
     //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
-    mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //yes field orientation
+    mecan.driveCartesian(zRotation, xSpeed, ySpeed, gyro.getAngle()); //yes field orientation
     System.out.println("front left voltage: " + frontLeft.getBusVoltage()); //finds voltage for each wheel
     System.out.println("front right voltage: " + frontRight.getBusVoltage());
     System.out.println("rear left voltage: " + rearLeft.getBusVoltage());
