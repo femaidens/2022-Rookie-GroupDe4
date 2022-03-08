@@ -30,7 +30,7 @@ public class Drivetrain extends Subsystem {
 
   public void driveTeleop(){
     //for two joysticks
-    double ySpeed = -OI.LeftJoy.getRawAxis(1);
+    double ySpeed = OI.LeftJoy.getRawAxis(1);
     double xSpeed = OI.LeftJoy.getRawAxis(0);
 		double zRotation = OI.RightJoy.getRawAxis(0); //basically the zRotation 
     /*
@@ -41,11 +41,17 @@ public class Drivetrain extends Subsystem {
     */
 
     //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
-    mecan.driveCartesian(zRotation, xSpeed, ySpeed, gyro.getAngle()); //yes field orientation
+    // mecan.driveCartesian(zRotation, xSpeed, ySpeed); //yes field orientation
+    frontRight.set(-0.25);
+    frontLeft.set(0.25);
+    rearRight.set(-0.25);
+    rearLeft.set(0.25);
+
     System.out.println("front left voltage: " + frontLeft.getBusVoltage()); //finds voltage for each wheel
     System.out.println("front right voltage: " + frontRight.getBusVoltage());
     System.out.println("rear left voltage: " + rearLeft.getBusVoltage());
     System.out.println("rear right voltage: " + rearRight.getBusVoltage());
+    System.out.println();
   }
   
   /* currently not part of code :)
