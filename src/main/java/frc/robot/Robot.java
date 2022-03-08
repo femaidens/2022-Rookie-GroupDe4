@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +22,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
   public static Drivetrain drivetrain;
+  public static ADXRS450_Gyro gyro;
 
   @Override
   public void robotInit() {
@@ -32,7 +35,8 @@ public class Robot extends TimedRobot {
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
     drivetrain.setDefaultCommand(new DriveTeleop());
-
+    gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+    gyro.calibrate();
   }
 
   @Override

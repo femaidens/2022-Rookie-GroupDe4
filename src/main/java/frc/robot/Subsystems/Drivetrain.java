@@ -6,7 +6,10 @@ package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.AnalogGyro;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.SPI;
+// import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.revrobotics.RelativeEncoder;
@@ -18,19 +21,20 @@ public class Drivetrain extends Subsystem {
 	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
 	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
-  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+  //public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 	public static MecanumDrive mecan = new MecanumDrive (frontLeft, rearLeft, frontRight, rearRight);
   public static RelativeEncoder frontLeftEncoder = frontLeft.getEncoder();
   public static RelativeEncoder frontRightEncoder = frontRight.getEncoder();
   public static RelativeEncoder rearLeftEncoder = rearLeft.getEncoder();
   public static RelativeEncoder rearRightEncoder = rearRight.getEncoder();
+  public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
   @Override
   protected void initDefaultCommand() {}
 
   public void driveTeleop(){
     //for two joysticks
-    double ySpeed = OI.LeftJoy.getRawAxis(1);
+    double ySpeed = -OI.LeftJoy.getRawAxis(1);
     double xSpeed = OI.LeftJoy.getRawAxis(0);
 		double zRotation = OI.RightJoy.getRawAxis(0); //basically the zRotation 
     /*
@@ -41,16 +45,18 @@ public class Drivetrain extends Subsystem {
     */
 
     //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
-    // mecan.driveCartesian(zRotation, xSpeed, ySpeed); //yes field orientation
-    frontRight.set(-0.25);
+    mecan.driveCartesian(zRotation, xSpeed, ySpeed, gyro.getAngle()); //yes field orientation
+    /*frontRight.set(-0.25);
     frontLeft.set(0.25);
     rearRight.set(-0.25);
     rearLeft.set(0.25);
+    */
 
     System.out.println("front left voltage: " + frontLeft.getBusVoltage()); //finds voltage for each wheel
     System.out.println("front right voltage: " + frontRight.getBusVoltage());
     System.out.println("rear left voltage: " + rearLeft.getBusVoltage());
     System.out.println("rear right voltage: " + rearRight.getBusVoltage());
+    System.out.println("gyro angle: " + gyro.getAngle());
     System.out.println();
   }
   
