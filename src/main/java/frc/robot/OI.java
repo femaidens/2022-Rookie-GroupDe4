@@ -4,5 +4,15 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.MeccaLimelightComm;
+
 public class OI {
+    public static Joystick testJoy = new Joystick(2);
+    public static JoystickButton mecTest = new JoystickButton(testJoy, 1);
+
+    public void bindButton(){
+        mecTest.whenPressed(new MeccaLimelightComm());
+    }
 }

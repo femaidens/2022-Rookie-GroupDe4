@@ -5,7 +5,7 @@
 package frc.robot.Subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Commands.MeccaLimelightComm;
+// import frc.robot.Commands.MeccaLimelightComm;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -18,7 +18,7 @@ public class MeccaLime extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new MeccaLimelightComm());
+    // setDefaultCommand(new MeccaLimelightComm());
   }
 
   public double getTXValue(){
