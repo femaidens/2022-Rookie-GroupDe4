@@ -5,14 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Commands.DriveTeleop;
-import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.DCTest;
 
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
@@ -21,21 +19,20 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
-  public static Drivetrain drivetrain;
   public static ADXRS450_Gyro gyro;
+  public static DCTest dctest;
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    drivetrain = new Drivetrain(); // must always be the first subsystem
     m_oi = new OI();
+    dctest = new DCTest();
     //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
-    drivetrain.setDefaultCommand(new DriveTeleop());
-    // gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+    //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
     
     System.out.println("Calibrate starting");
     // gyro.reset();

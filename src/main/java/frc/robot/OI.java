@@ -6,15 +6,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.DriveAutonGroup;
+import frc.robot.Commands.DCTestComm;
 
 public class OI {
-    public static Joystick RightJoy = new Joystick(RobotMap.RightJoyPort); //rotational movement 
-    public static Joystick LeftJoy = new Joystick(RobotMap.LeftJoyPort); //lateral movement
-    public static Joystick OpJoy = new Joystick(RobotMap.OpJoyPort); //operator joystick; ex: climb, auton, shooting
-    public static Button driveAuton = new JoystickButton(OpJoy, 14);
+    public static Joystick DriveJoy = new Joystick(RobotMap.DriveJoyPort); //rotational movement 
+    public static Button dcTestButton = new JoystickButton(DriveJoy, 0);
 
     public void bindButtons(){
-        driveAuton.whenPressed(new DriveAutonGroup());
+        dcTestButton.whileHeld(new DCTestComm());
     }
 }
