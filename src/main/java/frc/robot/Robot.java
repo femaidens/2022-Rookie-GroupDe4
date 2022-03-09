@@ -35,8 +35,12 @@ public class Robot extends TimedRobot {
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
     drivetrain.setDefaultCommand(new DriveTeleop());
-    gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-    gyro.calibrate();
+    // gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+    
+    System.out.println("Calibrate starting");
+    // gyro.reset();
+    System.out.println("Calibrate finished");
+    System.out.println();
   }
 
   @Override
