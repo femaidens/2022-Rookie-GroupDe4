@@ -44,6 +44,8 @@ public class Drivetrain extends Subsystem {
 		double zRotation = OI.driveJoy.getRawAxis(4); //basically the zRotation 
     */
 
+    frontRight.setInverted(true);
+    rearRight.setInverted(true);
     //mecan.driveCartesian(zRotation, xSpeed, ySpeed, 0); //no gyro; no field orientation
     mecan.driveCartesian(zRotation, xSpeed, ySpeed, gyro.getAngle()); //yes field orientation
     /*frontRight.set(-0.25);
