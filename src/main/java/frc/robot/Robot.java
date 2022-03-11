@@ -4,10 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+//import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.DCTest;
@@ -15,11 +14,10 @@ import frc.robot.Subsystems.DCTest;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
-  public static final Subsystem Shooter = null;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
-  public static ADXRS450_Gyro gyro;
+  //public static ADXRS450_Gyro gyro;
   public static DCTest dctest;
 
   @Override
@@ -33,11 +31,6 @@ public class Robot extends TimedRobot {
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
     //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-    
-    System.out.println("Calibrate starting");
-    // gyro.reset();
-    System.out.println("Calibrate finished");
-    System.out.println();
   }
 
   @Override
