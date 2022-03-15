@@ -9,6 +9,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAutonGroup extends CommandGroup {
   public DriveAutonGroup() {
     addSequential(new DriveAuton(0.1, 0.1));
-    addSequential(new TankAutoalign(0.05));
+    addSequential(new TankAutoalign());
   }
 }
