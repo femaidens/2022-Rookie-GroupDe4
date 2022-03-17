@@ -1,7 +1,7 @@
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
-//changed github user
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -18,20 +18,18 @@ public class Robot extends TimedRobot {
   public static final Subsystem Shooter = null;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  public static Tankdrive tankdrive;
   public static OI m_oi;
   public static TankLimelight tlimelight;
+  public static Tankdrive tankdrive;
 
   @Override
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    tankdrive = new Tankdrive();
     tlimelight = new TankLimelight();
-    m_oi = new OI();
-
-    m_oi.bindButtons();
+    tankdrive = new Tankdrive();
+    //m_oi.bindButtons();
     System.out.println("init");
     //drivetrain.setDefaultCommand(new DriveTeleop());
   }

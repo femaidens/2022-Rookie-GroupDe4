@@ -7,8 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.DriveAuton;
-import frc.robot.Commands.DriveAutonGroup;
 import frc.robot.Commands.TankAutoalign;
 
 public class OI {

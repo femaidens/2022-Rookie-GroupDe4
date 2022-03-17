@@ -98,6 +98,11 @@ public class Tankdrive extends Subsystem {
         rearLeft.set(adjust_tx);
       }
     }
+  }
+
+  public void adjustDistance(){
+    double goalDistance = 72.0; //in inches
+    double mDistance = Robot.tlimelight.getDistance();
 
     //for distance alignment
     previous_error_ty = current_error_ty;
@@ -106,26 +111,26 @@ public class Tankdrive extends Subsystem {
     derivative_ty = (current_error_ty - previous_error_ty)/time;
     adjust_ty = KP*current_error_ty + KI*integral_ty + KD*derivative_ty;
     
-    if (current_error_ty > min_error_ty){
-      adjust_ty += min_command_ty;
-    }
-    else if (current_error_ty < -min_error_ty){
-      adjust_ty -= min_command_ty;
-    }
-    else{
-      adjust_ty += 0;
-    }
-    
-    while(current_error_ty != 0){
-      if(current_error_ty > 0){ //crosshair is above 0; wants to move back
+    while(mDistance != goalDistance){
+      if (current_error_ty > min_error_ty){
+        adjust_ty += min_command_ty;
+      }
+      else if (current_error_ty < -min_error_ty){
+        adjust_ty -= min_command_ty;
+      }
+      else{
+        adjust_ty += 0;
+      }
+
+      if(mDistance < goalDistance){ //too close to the goal; wants to move back
         frontRight.set(-adjust_ty);
         midRight.set(-adjust_ty);
-        rearRight.set(-adjust_ty);
+        rearRight.set(-adjust_ty);          
         frontLeft.set(-adjust_ty);
         midLeft.set(-adjust_ty);
         rearLeft.set(-adjust_ty);
       }
-      else{ //crosshair is facing the below 0; wants to move forward
+      else{ //too far from the goal; want to move forward     
         frontRight.set(adjust_ty);
         midRight.set(adjust_ty);
         rearRight.set(adjust_ty);
@@ -134,9 +139,8 @@ public class Tankdrive extends Subsystem {
         rearLeft.set(adjust_ty);
       }
     }
-
   }
-
+  
   public void stopMotors(){
     frontLeft.set(0);
     midLeft.set(0);
