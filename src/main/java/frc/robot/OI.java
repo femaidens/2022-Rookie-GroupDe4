@@ -4,24 +4,18 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.ExtendPiston;
-import frc.robot.Commands.RetractPiston;
-import frc.robot.Commands.SpinMotors;
+import frc.robot.Commands.ExtendIntake;
+import frc.robot.Commands.RetractIntake;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
     public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-    public static JoystickButton ultButton = new JoystickButton(driveJoy, 1);
-	public static JoystickButton scoopBall = new JoystickButton(driveJoy, 5);
-	public static JoystickButton noScoopBall = new JoystickButton (driveJoy, 6);
-    public static JoystickButton shootBall = new JoystickButton (driveJoy, 7);
-    public static JoystickButton spinMotors = new JoystickButton (driveJoy, 8);
-    public static JoystickButton shooter2 = new JoystickButton (driveJoy, 9);
+	public static JoystickButton extendIntakeButton = new JoystickButton(driveJoy, 5);
+	public static JoystickButton retractIntakeButton = new JoystickButton (driveJoy, 6);
 
 
     public void bindButtons(){
-        scoopBall.whenPressed(new ExtendPiston());
-        noScoopBall.whenPressed(new RetractPiston());
-        spinMotors.whileHeld(new SpinMotors());
+        extendIntakeButton.whenPressed(new ExtendIntake());
+        retractIntakeButton.whileHeld(new RetractIntake());
     }
 }

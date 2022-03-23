@@ -7,33 +7,39 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
 
-public class RetractPiston extends Command {
-  public RetractPiston() {
+public class ExtendIntake extends Command {
+  public ExtendIntake() {
     requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.intake.pullBackPiston();
+    Robot.intake.extendIntake();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {}
+  protected void execute() {
+    Robot.intake.spinConveyerMotor();
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.intake.stopMotor();
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    Robot.intake.stopMotor();
+  }
 }
