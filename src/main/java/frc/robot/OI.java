@@ -14,7 +14,7 @@ public class OI {
 	public static JoystickButton retractIntakeButton = new JoystickButton (driveJoy, 6);
 
 
-    public void bindButtons(){
+    public void bindButtons(){ //may need to be flipped?
         extendIntakeButton.whenPressed(new ExtendIntake());
         retractIntakeButton.whileHeld(new RetractIntake());
     }

@@ -5,14 +5,12 @@
 package frc.robot.Subsystems;
 
 import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-//one motor one piston
+//one motor for conveyor; one for arm extension/retraction
 
 public class Intake extends Subsystem {
 	//public DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.piston1Port, RobotMap.piston2Port);
@@ -41,13 +39,13 @@ public class Intake extends Subsystem {
   }
 	
 
-	public void retractIntake(){ // can rename as retractIntake
+	public void retractIntake(){ 
 		while (intakeDC.getDistance() < 0){
-			intakeArmMotor.set(-0.25);
+			intakeArmMotor.set(-0.9);
 		}
 	}
 
-	public void spinConveyerMotor(){ //for spinning conveyer
+	public void spinConveyerMotor(){ //for spinning conveyor
 		intakeConveyerMotor.set(0.25);
 	}
 
@@ -73,7 +71,7 @@ public class Intake extends Subsystem {
 		adjust -= min_command;
 		}
 		
-		while(current_error != error_margin){ //0 degrees=horizontal axis
+		while(current_error != error_margin){ //0 degrees = horizontal axis
 			if (current_error > error_margin){ //mean that angle is greater than 37
 				intakeArmMotor.set(adjust); //spins forward to decrease angle
 			}
@@ -82,6 +80,4 @@ public class Intake extends Subsystem {
 			}
 		}
 	}
-
-
 }
