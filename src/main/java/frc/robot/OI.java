@@ -15,7 +15,7 @@ public class OI {
 
 
     public void bindButtons(){ //may need to be flipped?
-        extendIntakeButton.whenPressed(new ExtendIntake());
-        retractIntakeButton.whileHeld(new RetractIntake());
+        extendIntakeButton.whileHeld(new ExtendIntake());
+        retractIntakeButton.whenPressed(new RetractIntake());
     }
 }
