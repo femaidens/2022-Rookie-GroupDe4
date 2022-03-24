@@ -14,19 +14,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Intake extends Subsystem {
 	//public DoubleSolenoid piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.piston1Port, RobotMap.piston2Port);
-	public CANSparkMax intakeConveyerMotor = new CANSparkMax(RobotMap.intakeConveyerPort, CANSparkMax.MotorType.kBrushless);
+	public CANSparkMax intakeConveyorMotor = new CANSparkMax(RobotMap.intakeConveyorPort, CANSparkMax.MotorType.kBrushless);
 	public CANSparkMax intakeArmMotor = new CANSparkMax(RobotMap.intakeArmPort, CANSparkMax.MotorType.kBrushless);
 	public DutyCycleEncoder intakeDC = new DutyCycleEncoder(RobotMap.intakeDCPort);
 
 	private static final double KP = 0.1;
 	private static final double KI = 0.0;
 	private static final double KD = 0.0;
-	public static double speed;
-	private static double min_error = 0.1;
-	private static double min_command = 0.0;
-	static double current_error = 0.0;
-	static double current_errorTY = 0.0;
-	static double previous_error = 0.0;
+	//private static double min_command = 0.0;
 	static double integral = 0.0;
 	static double derivative = 0.0;
 	static double adjust = 0.0;
@@ -45,24 +40,28 @@ public class Intake extends Subsystem {
 		}
 	}
 
-	public void spinConveyerMotor(){ //for spinning conveyor
-		intakeConveyerMotor.set(0.25);
+	public void spinConveyorMotor(){ //for spinning conveyor
+		intakeConveyorMotor.set(0.25);
 	}
 
-	public void stopMotor(){
+	public void stopArmMotor(){
 		intakeArmMotor.set(0);
-		intakeConveyerMotor.set(0);
+	}
+
+	public void stopConveyorMotor(){
+		intakeConveyorMotor.set(0);
 	}
 
 	public void extendIntake(){
 		double distance = 6; //change based on testing
-		previous_error = current_error;
-    	current_error = distance - intakeDC.getDistance();
+    	double current_error = distance - intakeDC.getDistance();
+		double previous_error = current_error;
 		double error_margin = 0.02;
 		integral += (current_error+previous_error)/2*(time);
 		derivative = (current_error-previous_error)/time;
 		adjust = KP*current_error + KI*integral + KD*derivative;
 		
+		/*
 		if (current_error > min_error){
 		adjust += min_command;
 		}
@@ -70,6 +69,7 @@ public class Intake extends Subsystem {
 		else if (current_error < -min_error){
 		adjust -= min_command;
 		}
+		*/
 		
 		while(current_error != error_margin){ //0 degrees = horizontal axis
 			if (current_error > error_margin){ //mean that angle is greater than 37

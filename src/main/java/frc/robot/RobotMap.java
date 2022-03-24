@@ -10,7 +10,7 @@ public class RobotMap {
 	public static int ultPort2 = 3;
     public static int piston1Port = 4;
     public static int piston2Port = 5;
-    public static int intakeConveyerPort = 15;
+    public static int intakeConveyorPort = 15;
     public static int intakeArmPort = 6;
     public static int leftPistonPort = 7;
     public static int rightPistonPort = 8;
