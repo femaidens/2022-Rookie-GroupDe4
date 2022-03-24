@@ -68,13 +68,13 @@ public class Climb extends Subsystem {
 	}
 
 	public void spinClimbMotor(){
-		climbLeftMotor.set(0.5);
-    climbRightMotor.set(0.5);
+		climbLeftMotor.set(0.8);
+    climbRightMotor.set(0.8);
 	}
 
 	public void reverseClimbMotor(){
-		climbLeftMotor.set(-0.5);
-    climbRightMotor.set(-0.5);
+		climbLeftMotor.set(-0.8);
+    climbRightMotor.set(-0.8);
 	}
 
   public void stopClimbMotor(){
