@@ -63,17 +63,17 @@ public class ShooterLimelight extends Subsystem {
  
     while(current_error != 0){
       if(current_error > 0){ //crosshair is facing the left direction; wants to turn right
-        Shooter2new.mecan.driveCartesian(0, 0, 0.1 + adjust, 0);
+        Shooter2.mecan.driveCartesian(0, 0, 0.1 + adjust, 0);
       }
       else{ //crosshair is facing the right direction; wants to turn left
-        Shooter2new.mecan.driveCartesian(0, 0, 0.1 - adjust, 0);
+        Shooter2.mecan.driveCartesian(0, 0, 0.1 - adjust, 0);
       }
     while(current_errorTY != 0){
       if(current_errorTY > 0){
-        Shooter2new.mecan.driveCartesian(0.1 - adjust, 0, 0, 0);
+        Shooter2.mecan.driveCartesian(0.1 - adjust, 0, 0, 0);
       }
       else{
-        Shooter2new.mecan.driveCartesian(0.1 + adjust, 0, 0, 0);
+        Shooter2.mecan.driveCartesian(0.1 + adjust, 0, 0, 0);
       }
     }
     }

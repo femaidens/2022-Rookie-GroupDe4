@@ -4,20 +4,17 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.ShootBall2;
+import frc.robot.Commands.ShooterAutoalign;
+import frc.robot.Commands.ShooterReload;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
-    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-    public static JoystickButton ultButton = new JoystickButton(driveJoy, 1);
-	public static JoystickButton scoopBall = new JoystickButton(driveJoy, 5);
-	public static JoystickButton noScoopBall = new JoystickButton (driveJoy, 6);
-    public static JoystickButton shootBall = new JoystickButton (driveJoy, 7);
-    public static JoystickButton spinMotors = new JoystickButton (driveJoy, 8);
-    public static JoystickButton shooter2 = new JoystickButton (driveJoy, 9);
-
+    public static Joystick opJoy = new Joystick(RobotMap.opJoyPort);
+	public static JoystickButton alignShooter = new JoystickButton(opJoy, 6);
+    public static JoystickButton reloadShooter = new JoystickButton(opJoy, 7);
 
     public void bindButtons(){
-        shooter2.whenPressed(new ShootBall2());
+        alignShooter.whenPressed(new ShooterAutoalign());
+        reloadShooter.whenPressed(new ShooterReload());
     }
 }

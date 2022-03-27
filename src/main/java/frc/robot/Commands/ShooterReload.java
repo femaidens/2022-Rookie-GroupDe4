@@ -7,8 +7,8 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ShootBall2 extends Command {
-  public ShootBall2() {
+public class ShooterReload extends Command {
+  public ShooterReload() {
     requires(Robot.shooter2);
   }
 
@@ -19,7 +19,7 @@ public class ShootBall2 extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter2.shootBall();
+    Robot.shooter2.spinDCMotor();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -32,6 +32,7 @@ public class ShootBall2 extends Command {
   @Override
   protected void end() {
     Robot.shooter2.stopDCMotor();
+    Robot.shooter2.retractS2Piston();
   }
 
   // Called when another command which requires one or more of the same

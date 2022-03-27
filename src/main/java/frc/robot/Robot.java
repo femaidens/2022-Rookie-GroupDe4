@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Commands.ShootBall2;
 import frc.robot.Subsystems.Shooter2;
-import frc.robot.Subsystems.Shooter2new;
 import frc.robot.Subsystems.ShooterLimelight;
 
 public class Robot extends TimedRobot {
@@ -21,7 +21,6 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static OI m_oi;
 
-  public static Shooter2new shooter2new;
   public static Shooter2 shooter2;
   public static ShooterLimelight slimelight;
 
@@ -31,12 +30,11 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     m_oi = new OI();
-    shooter2new = new Shooter2new();
     shooter2 = new Shooter2();
     slimelight = new ShooterLimelight();
     //m_oi.bindButtons();
     System.out.println("init");
-    //drivetrain.setDefaultCommand(new DriveTeleop());
+    shooter2.setDefaultCommand(new ShootBall2());
   }
 
   @Override

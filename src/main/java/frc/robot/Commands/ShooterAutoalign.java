@@ -9,7 +9,7 @@ import frc.robot.Robot;
 
 public class ShooterAutoalign extends Command {
   public ShooterAutoalign() {
-    requires(Robot.shooter2new);
+    requires(Robot.shooter2);
   }
 
   // Called just before this Command runs the first time
@@ -18,7 +18,7 @@ public class ShooterAutoalign extends Command {
 
   @Override
   protected void execute() {
-    Robot.shooter2new.shooterAlign();
+    Robot.shooter2.shooterAlign();
   }
 
   @Override
@@ -27,7 +27,9 @@ public class ShooterAutoalign extends Command {
   }
 
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.shooter2.stopDCMotor();
+  }
 
   @Override
   protected void interrupted() {}
