@@ -39,6 +39,7 @@ public class DriveTeleop extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() { // for insurance, add measures to stop motors or drivetrain
+    Robot.drivetrain.stopAuton();
     end();
   } 
 }
