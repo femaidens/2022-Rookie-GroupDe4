@@ -6,7 +6,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.Commands.DriveAutonGroup;
+import frc.robot.CommandGroups.DriveAutonGroup;
 
 public class OI {
     public static Joystick RightJoy = new Joystick(RobotMap.RightJoyPort); //rotational movement 
