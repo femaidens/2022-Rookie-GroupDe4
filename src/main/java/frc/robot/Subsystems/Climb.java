@@ -44,9 +44,6 @@ public class Climb extends Subsystem {
   private static final double KP = 0.0;
   private static final double KI = 0.0;
   private static final double KD = 0.0;
-  public static double speed;
-  private static double min_error = 0.1;
-  private static double min_command = 0.0;
   static double current_errorLeft, current_errorRight = 0.0;
   static double previous_errorLeft, previous_errorRight = 0.0;
   static double integralLeft, integralRight = 0.0;
@@ -96,22 +93,6 @@ public class Climb extends Subsystem {
     integralRight += (current_errorRight + previous_errorRight)/2*(time);
     derivativeRight = (current_errorRight - previous_errorRight)/time;
     adjustRight = KP*current_errorRight + KI*integralRight + KD*derivativeRight;
-
-    if (current_errorLeft > min_error){
-      adjustLeft += min_command;
-    }
-
-    else if (current_errorLeft < -min_error){
-      adjustLeft -= min_command;
-    }
-
-    else if (current_errorRight > min_error){
-      adjustRight += min_command;
-    }
-
-    else if (current_errorRight < -min_error){
-      adjustRight -= min_command;
-    }
 
     while(ultLeftDistance != distance || ultRightDistance != distance){
       
