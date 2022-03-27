@@ -21,7 +21,6 @@ public class Intake extends Subsystem {
 	private static final double KP = 0.1;
 	private static final double KI = 0.0;
 	private static final double KD = 0.0;
-	//private static double min_command = 0.0;
 	static double integral = 0.0;
 	static double derivative = 0.0;
 	static double adjust = 0.0;
@@ -35,7 +34,7 @@ public class Intake extends Subsystem {
 
 	public void retractIntake(){ 
 		while (intakeDC.getDistance() < 0){
-			intakeArmMotor.set(-0.9);
+			intakeArmMotor.set(-0.9); //stubborn gearbox; that's why we're moving it this fast
 		}
 	}
 
@@ -52,6 +51,7 @@ public class Intake extends Subsystem {
 	}
 
 	public void extendIntake(){
+
 		double distance = 6; //change based on testing
     	double current_error = distance - intakeDC.getDistance();
 		double previous_error = current_error;
