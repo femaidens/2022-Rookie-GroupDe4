@@ -7,6 +7,7 @@ package frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -21,7 +22,8 @@ public class Shooter2 extends Subsystem {
   public DutyCycleEncoder dcEncoder = new DutyCycleEncoder(RobotMap.dcPort);
   public DoubleSolenoid shooter2Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.leftPistonPort, RobotMap.rightPistonPort);
 	public CANSparkMax shooter2Motor = new CANSparkMax(RobotMap.shooter2Port, CANSparkMax.MotorType.kBrushless);
-  
+  public RelativeEncoder shooterRelative = shooter2Motor.getEncoder();
+
   //drivetrain
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
 	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
@@ -48,10 +50,19 @@ public class Shooter2 extends Subsystem {
   }
 
   public void spinDCMotor(){
-    double distance = 5; //experimental value; change according to distance needed
-    while(dcEncoder.getDistance() < distance){
+     double distance = 5; //experimental value; change according to distance needed
+     while(dcEncoder.getDistance() < distance){
+       shooter2Motor.set(-0.5);
+    }
+  }
+
+  public void getEncoderDistance(){
+    double rotations = 5; //experienmal value; change according to distance needed
+    while(shooterRelative.getPosition() < rotations){
       shooter2Motor.set(-0.5);
     }
+    System.out.println("number of rotations: " + shooterRelative.getPosition());
+    shooterRelative.setPosition(0);
   }
 
   public void stopDCMotor(){
