@@ -4,6 +4,7 @@
 
 package frc.robot.Subsystems;
 
+import frc.robot.OI;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import com.revrobotics.CANSparkMax;
@@ -51,31 +52,33 @@ public class Intake extends Subsystem {
 	}
 
 	public void extendIntake(){
-
-		double distance = 6; //change based on testing
-    	double current_error = distance - intakeDC.getDistance();
-		double previous_error = current_error;
-		double error_margin = 0.02;
-		integral += (current_error+previous_error)/2*(time);
-		derivative = (current_error-previous_error)/time;
-		adjust = KP*current_error + KI*integral + KD*derivative;
-		
-		/*
-		if (current_error > min_error){
-		adjust += min_command;
-		}
-
-		else if (current_error < -min_error){
-		adjust -= min_command;
-		}
-		*/
-		
-		while(current_error != error_margin){ //0 degrees = horizontal axis
-			if (current_error > error_margin){ //mean that angle is greater than 37
-				intakeArmMotor.set(adjust); //spins forward to decrease angle
+		double extendIntakeTrigger = OI.opJoy.getRawAxis(2); //left trigger
+		if (extendIntakeTrigger > 0.2){
+			double distance = 6; //change based on testing
+			double current_error = distance - intakeDC.getDistance();
+			double previous_error = current_error;
+			double error_margin = 0.02;
+			integral += (current_error+previous_error)/2*(time);
+			derivative = (current_error-previous_error)/time;
+			adjust = KP*current_error + KI*integral + KD*derivative;
+			
+			/*
+			if (current_error > min_error){
+			adjust += min_command;
 			}
-			else if (current_error < -error_margin){ // angle is less than 37
-				intakeArmMotor.set(-adjust); // spins backwards to increase angle
+
+			else if (current_error < -min_error){
+			adjust -= min_command;
+			}
+			*/
+			
+			while(current_error != error_margin){ //0 degrees = horizontal axis
+				if (current_error > error_margin){ //mean that angle is greater than 37
+					intakeArmMotor.set(adjust); //spins forward to decrease angle
+				}
+				else if (current_error < -error_margin){ // angle is less than 37
+					intakeArmMotor.set(-adjust); // spins backwards to increase angle
+				}
 			}
 		}
 	}

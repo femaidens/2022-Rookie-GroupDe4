@@ -5,7 +5,7 @@
 package frc.robot;
 
 public class RobotMap {
-    public static int driveJoyPort = 1;
+    public static int opJoyPort = 1;
     public static int intakeConveyorPort = 4;
     public static int intakeArmPort = 3;
     public static int intakeDCPort = 14;

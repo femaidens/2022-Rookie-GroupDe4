@@ -9,9 +9,9 @@ import frc.robot.Commands.RetractIntake;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
-    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-	//public static JoystickButton extendIntakeButton = new JoystickButton(driveJoy, 5);
-	public static JoystickButton retractIntakeButton = new JoystickButton (driveJoy, 5);
+    public static Joystick opJoy = new Joystick(RobotMap.opJoyPort);
+	//public static JoystickButton extendIntakeButton = new JoystickButton(opJoy, 5);
+	public static JoystickButton retractIntakeButton = new JoystickButton (opJoy, 5);
 
 
     public void bindButtons(){ //may need to be flipped?
