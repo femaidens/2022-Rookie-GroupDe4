@@ -12,12 +12,12 @@ import frc.robot.Commands.RetractClimbPiston;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class OI {
-    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-    public static JoystickButton extendArmsButton = new JoystickButton (driveJoy, 10);
-    public static JoystickButton retractArmsButton = new JoystickButton (driveJoy, 11);
-    public static JoystickButton increaseAngleButton = new JoystickButton (driveJoy,12);
-    public static JoystickButton decreaseAngleButton = new JoystickButton (driveJoy, 13);
-    public static JoystickButton climbAutonAlign = new JoystickButton (driveJoy, 14);
+    public static Joystick opJoy = new Joystick(RobotMap.opJoyPort);
+    public static JoystickButton extendArmsButton = new JoystickButton (opJoy, 2);
+    public static JoystickButton retractArmsButton = new JoystickButton (opJoy, 3);
+    public static JoystickButton increaseAngleButton = new JoystickButton (opJoy,4);
+    public static JoystickButton decreaseAngleButton = new JoystickButton (opJoy, 1);
+    public static JoystickButton climbAutonAlign = new JoystickButton (opJoy, 14); //not on controller; for driver joystick; change to drivejoysticks
 
     public void bindButtons(){
         extendArmsButton.whenPressed(new ExtendClimbArms());
