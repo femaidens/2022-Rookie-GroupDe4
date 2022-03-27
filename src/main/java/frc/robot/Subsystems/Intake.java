@@ -27,12 +27,11 @@ public class Intake extends Subsystem {
 	static double adjust = 0.0;
 	static double time = 0.1;
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
-	
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
 
 	public void retractIntake(){ 
 		while (intakeDC.getDistance() < 0){
