@@ -26,12 +26,6 @@ public class Climb extends Subsystem {
   public static Ultrasonic climbUltLeft = new Ultrasonic(RobotMap.climbUltLeftPort1, RobotMap.climbUltLeftPort2);
   public static Ultrasonic climbUltRight = new Ultrasonic(RobotMap.climbUltRightPort1, RobotMap.climbUltRightPort2);
 
-  public double ultLeftDistance = climbUltLeft.getRangeInches();
-  public double ultRightDistance = climbUltRight.getRangeInches();
-  public double margin = 0.05;
-
-  public static double distance;
-
   //drivetrain
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
 	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
@@ -44,11 +38,11 @@ public class Climb extends Subsystem {
   private static final double KP = 0.0;
   private static final double KI = 0.0;
   private static final double KD = 0.0;
-  static double current_errorLeft, current_errorRight = 0.0;
-  static double previous_errorLeft, previous_errorRight = 0.0;
-  static double integralLeft, integralRight = 0.0;
-  static double derivativeLeft, derivativeRight = 0.0;
-  static double adjustLeft, adjustRight = 0.0;
+  static double current_errorLeft, current_errorRight, current_errorRotation = 0.0;
+  static double previous_errorLeft, previous_errorRight, previous_errorRotation = 0.0;
+  static double integralLeft, integralRight, integralRotation = 0.0;
+  static double derivativeLeft, derivativeRight, derivativeRotation = 0.0;
+  static double adjustLeft, adjustRight, adjustRotation = 0.0;
   static double time = 0.1;
 
   @Override
@@ -80,9 +74,17 @@ public class Climb extends Subsystem {
   }
   
   public void climbAutoAlign(){
+    double distance = 5; //change to suit wanted distance from the wall
+    double ultLeftDistance = climbUltLeft.getRangeInches();
+    double ultRightDistance = climbUltRight.getRangeInches();
+    double distance_margin = 0.05; //error from distance we want to be
+    double difference_margin = 0.05; //error between left and right ults
+    
     //left pid values
     previous_errorLeft = current_errorLeft;
-    current_errorLeft = distance - ultLeftDistance;
+    current_errorLeft = distance - ultLeftDistance; 
+    //if error = negative; in front of distance
+    //if error = positive; too behind distance
     integralLeft += (current_errorLeft + previous_errorLeft)/2*(time);
     derivativeLeft = (current_errorLeft - previous_errorLeft)/time;
     adjustLeft = KP*current_errorLeft + KI*integralLeft + KD*derivativeLeft;
@@ -94,16 +96,30 @@ public class Climb extends Subsystem {
     derivativeRight = (current_errorRight - previous_errorRight)/time;
     adjustRight = KP*current_errorRight + KI*integralRight + KD*derivativeRight;
 
-    while(ultLeftDistance != distance || ultRightDistance != distance){
-      
-      // for left side
-      if(current_errorLeft > 0){
-        frontLeft.set(0.25 + adjustLeft);
-        rearLeft.set(0.25 + adjustLeft);
+    //left-right pid values
+    previous_errorRotation = current_errorRotation;
+    current_errorRotation = ultLeftDistance - ultRightDistance;
+    integralRotation += (current_errorRight + previous_errorRight)/2*(time);
+    derivativeRotation = (current_errorRight - previous_errorRight)/time;
+    adjustRotation = KP*current_errorRight + KI*integralRight + KD*derivativeRight;
+
+    while(current_errorRotation != difference_margin){
+      if(current_errorRotation > difference_margin){ //left side farther away from the wall; turn right
+        mecan.driveCartesian(adjustRotation, 0, 0, 0);
       }
-      else{
-        frontLeft.set(0.25 - adjustLeft);
-        rearLeft.set(0.25 - adjustLeft);
+      else if (current_errorRotation < -difference_margin){ //right side farther away from the wall; turns left
+        mecan.driveCartesian(-adjustRotation, 0, 0, 0);
+      } 
+    }
+
+    while(current_errorLeft != distance_margin || current_errorRight != distance_margin){
+      
+      //for left side
+      if(current_errorLeft > distance_margin){ //too far away from distance; wants to move forward
+        mecan.driveCartesian(0, 0, adjustLeft, gyro.getAngle());
+      }
+      else{ //too in front of distance; wants to move backward
+        mecan.driveCartesian(0, 0, -adjustLeft, gyro.getAngle());
       }
 
       // for right side
@@ -115,15 +131,6 @@ public class Climb extends Subsystem {
         frontRight.set(0.25 - adjustRight);
         rearRight.set(0.25 - adjustRight);
       }
-    }
-    
-    while(ultLeftDistance != ultRightDistance){
-      if(ultLeftDistance - ultRightDistance > margin){ //left side closer to the wall; turns left
-        mecan.driveCartesian(0, 0, -0.1, 0);
-      }
-      else if (ultLeftDistance - ultRightDistance < -margin){ //right side closer to the wall; turns right
-        mecan.driveCartesian(0, 0, 0.1, 0);
-      } 
     }
   }
 
