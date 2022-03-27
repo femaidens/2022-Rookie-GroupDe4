@@ -4,18 +4,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 //import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.Commands.LimelightTest;
 import frc.robot.Subsystems.LimelightTest1;
 
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
+  // private static final String kDefaultAuto = "Default";
+  // private static final String kCustomAuto = "My Auto";
   public static String limelightAuto = "limelightAuto";
   public static final Subsystem Shooter = null;
   //private String m_autoSelected;
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
     //limelightCommand = new LimelightTest();
     //limelightChooser.setDefaultOption("Limelight Test: ", limelightAuto);
     //m_oi.bindButtons();
+    CameraServer.startAutomaticCapture();
     System.out.println("init");
   }
 

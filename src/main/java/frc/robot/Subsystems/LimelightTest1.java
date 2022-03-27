@@ -8,12 +8,23 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Commands.LimelightTest;
 
 public class LimelightTest1 extends Subsystem {
   public static NetworkTable lmTable = NetworkTableInstance.getDefault().getTable("limelight");
   public static NetworkTableEntry tx = lmTable.getEntry("tx"); //horizontal distance from crosshair
   public static NetworkTableEntry ty = lmTable.getEntry("ty"); //vertical distance from crosshair 
+
+  //read values periodically
+  double x = tx.getDouble(0.0);
+  double y = ty.getDouble(0.0);
+
+  public void postSmartDashboard(){ 
+    //post to smart dashboard periodically
+    SmartDashboard.putNumber("LimelightX", x);
+    SmartDashboard.putNumber("LimelightY", y);
+  }
 
   @Override
   public void initDefaultCommand() {
