@@ -58,14 +58,16 @@ public class Climb extends Subsystem {
     climbLeftPiston.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	public void spinClimbMotor(){
-		climbLeftMotor.set(0.8);
-    climbRightMotor.set(0.8);
-	}
-
-	public void reverseClimbMotor(){
+	public void extendClimbArmMotor(){
+    //negative motor speed = longer arm
 		climbLeftMotor.set(-0.8);
     climbRightMotor.set(-0.8);
+	}
+
+	public void retractClimbArmMotor(){
+    //positive motor speed = shorter arm
+		climbLeftMotor.set(0.8);
+    climbRightMotor.set(0.8);
 	}
 
   public void stopClimbMotor(){

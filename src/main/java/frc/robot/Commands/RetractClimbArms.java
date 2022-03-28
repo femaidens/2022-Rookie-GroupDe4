@@ -17,7 +17,7 @@ public class RetractClimbArms extends Command {
 
   @Override
   protected void execute() {
-    Robot.climb.reverseClimbMotor();
+    Robot.climb.retractClimbArmMotor();
   }
 
   @Override
