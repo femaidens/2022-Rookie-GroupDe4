@@ -79,12 +79,12 @@ public class Shooter2 extends Subsystem {
   public void shootBall(){
     double shootBallTrigger = OI.opJoy.getRawAxis(3); //right trigger
     if (shootBallTrigger > 0.2){
-      shooter2Piston.set(DoubleSolenoid.Value.kForward); //release the latch to shoot
+      shooter2Piston.set(DoubleSolenoid.Value.kReverse); //releases piston to shoot
     }
   }
 
-  public void retractS2Piston(){
-    shooter2Piston.set(DoubleSolenoid.Value.kReverse); //retracts piston to og place
+  public void extendS2Piston(){
+    shooter2Piston.set(DoubleSolenoid.Value.kForward); //extends piston to keep string in place
   }
 
   public void stopMecanDrive(){
