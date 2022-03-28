@@ -14,13 +14,18 @@ public class DCTestComm extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    //Robot.dctest.resetDCEncoder();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     Robot.dctest.spinDCMotor();
-    Robot.dctest.measureTicks();
+    Robot.dctest.measureTicks(); 
+    //Robot.dctest.testRegEncoder();
+    //System.out.println("execute");
+    //Robot.dctest.dcTestMotor.set(0.3);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +36,9 @@ public class DCTestComm extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.dctest.stopDCMotor();
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

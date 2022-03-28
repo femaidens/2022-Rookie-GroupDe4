@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Commands.DCTestComm;
 import frc.robot.Subsystems.DCTest;
 
 public class Robot extends TimedRobot {
@@ -25,11 +26,10 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    m_oi = new OI();
     dctest = new DCTest();
-    //m_oi.bindButtons();
+    m_oi = new OI();
+    m_oi.bindButtons();
     System.out.println("init");
-    //drivetrain.setDefaultCommand(new DriveTeleop());
     //gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
   }
 
@@ -59,7 +59,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    //new DCTestComm().start();
+  }
 
   /** This function is called periodically during operator control. */
   @Override

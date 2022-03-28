@@ -10,7 +10,7 @@ import frc.robot.Commands.DCTestComm;
 
 public class OI {
     public static Joystick DriveJoy = new Joystick(RobotMap.DriveJoyPort); //rotational movement 
-    public static Button dcTestButton = new JoystickButton(DriveJoy, 0);
+    public static Button dcTestButton = new JoystickButton(DriveJoy, 1);
 
     public void bindButtons(){
         dcTestButton.whileHeld(new DCTestComm());
