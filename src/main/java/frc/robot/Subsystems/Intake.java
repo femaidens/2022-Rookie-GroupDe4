@@ -34,7 +34,8 @@ public class Intake extends Subsystem {
 	}
 
 	public void retractIntake(){ 
-		while (intakeDC.getDistance() < 0){
+		double retract_distance = 50.0; //change based on testing
+		while (intakeDC.getDistance() > retract_distance){
 			intakeArmMotor.set(-0.9); //stubborn gearbox; that's why we're moving it this fast
 		}
 	}
@@ -49,6 +50,25 @@ public class Intake extends Subsystem {
 
 	public void stopConveyorMotor(){
 		intakeConveyorMotor.set(0);
+	}
+
+	public void lowerIntake(){
+		double lower_distance = 6; //change based on testing
+		double current_error = lower_distance - intakeDC.getDistance();
+		double previous_error = current_error;
+		double error_margin = 0.02; //change based on preference
+		integral += (current_error+previous_error)/2*(time);
+		derivative = (current_error-previous_error)/time;
+		adjust = KP*current_error + KI*integral + KD*derivative;
+
+		while(current_error != error_margin){ //0 degrees = vertical axis
+			if (current_error > error_margin){ //mean that angle is greater than 15
+				intakeArmMotor.set(adjust); //spins forward to decrease angle
+			}
+			else if (current_error < -error_margin){ // angle is less than 15
+				intakeArmMotor.set(-adjust); // spins backwards to increase angle
+			}
+		}
 	}
 
 	public void extendIntake(){
@@ -72,7 +92,7 @@ public class Intake extends Subsystem {
 			}
 			*/
 			
-			while(current_error != error_margin){ //0 degrees = horizontal axis
+			while(current_error != error_margin){ //0 degrees = vertical axis
 				if (current_error > error_margin){ //mean that angle is greater than 37
 					intakeArmMotor.set(adjust); //spins forward to decrease angle
 				}
