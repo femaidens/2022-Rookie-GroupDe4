@@ -7,12 +7,9 @@ package frc.robot.Subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
-import frc.robot.Commands.DCTestComm;
+//import frc.robot.Commands.DCTestComm;
 
 /** Add your docs here. */
 public class DCTest extends Subsystem {
