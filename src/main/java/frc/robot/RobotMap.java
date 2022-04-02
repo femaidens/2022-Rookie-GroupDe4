@@ -6,8 +6,10 @@ package frc.robot;
 
 public class RobotMap {
     public static int opJoyPort = 1;
-    public static int leftPistonPort = 7; // find out ports for piston
-    public static int rightPistonPort = 8; // find out ports for piston
+    public static int leftLatchPistonPort = 7; // find out ports for piston
+    public static int rightLatchPistonPort = 8; // find out ports for piston
+    public static int leftGBPistonPort = 15; // find out ports for piston
+    public static int rightGBPistonPort = 16; // find out ports for piston
     public static int frontLeftPort = 1;
     public static int rearLeftPort = 9;
     public static int frontRightPort = 2;

@@ -32,6 +32,8 @@ public class ShootBall2 extends Command {
   @Override
   protected void end() {
     Robot.shooter2.stopDCMotor();
+    Robot.shooter2.shootBall(); //releases latch piston to shoot
+    Robot.shooter2.extendGBPiston();
   }
 
   // Called when another command which requires one or more of the same

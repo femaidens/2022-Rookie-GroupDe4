@@ -20,8 +20,9 @@ import frc.robot.RobotMap;
 
 public class Shooter2 extends Subsystem {
   public DutyCycleEncoder dcEncoder = new DutyCycleEncoder(RobotMap.dcPort);
-  public DoubleSolenoid shooter2Piston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.leftPistonPort, RobotMap.rightPistonPort);
-	public CANSparkMax shooter2Motor = new CANSparkMax(RobotMap.shooter2Port, CANSparkMax.MotorType.kBrushless);
+  public DoubleSolenoid shooter2LatchPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.leftLatchPistonPort, RobotMap.rightLatchPistonPort);
+  public DoubleSolenoid shooter2GBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.leftGBPistonPort, RobotMap.rightGBPistonPort);
+  public CANSparkMax shooter2Motor = new CANSparkMax(RobotMap.shooter2Port, CANSparkMax.MotorType.kBrushless);
   public RelativeEncoder shooterRelative = shooter2Motor.getEncoder();
 
   //drivetrain
@@ -79,13 +80,22 @@ public class Shooter2 extends Subsystem {
   public void shootBall(){
     double shootBallTrigger = OI.opJoy.getRawAxis(3); //right trigger
     if (shootBallTrigger > 0.2){
-      shooter2Piston.set(DoubleSolenoid.Value.kReverse); //releases piston to shoot
+      shooter2LatchPiston.set(DoubleSolenoid.Value.kReverse); //releases latch piston to shoot
     }
   }
 
-  public void extendS2Piston(){
-    shooter2Piston.set(DoubleSolenoid.Value.kForward); //extends piston to keep string in place
+  public void extendLatchPiston(){
+    shooter2LatchPiston.set(DoubleSolenoid.Value.kForward); //extends latch piston to keep string in place
   }
+
+  public void extendGBPiston(){
+    shooter2GBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
+  }
+
+  public void retractGBPiston(){
+    shooter2GBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
+  }
+
 
   public void stopMecanDrive(){
     mecan.driveCartesian(0, 0, 0, gyro.getAngle());
