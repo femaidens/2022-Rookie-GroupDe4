@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Commands.GetDistance;
 import frc.robot.Subsystems.UltrasonicTest;
 
 public class Robot extends TimedRobot {
@@ -30,7 +31,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     //m_oi.bindButtons();
     System.out.println("init");
-    //drivetrain.setDefaultCommand(new DriveTeleop());
+    ult.setDefaultCommand(new GetDistance());
   }
 
   @Override

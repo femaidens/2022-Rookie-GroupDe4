@@ -20,7 +20,7 @@ public class UltrasonicTest extends Subsystem {
 
   public void getInches(){
     Ultrasonic.setAutomaticMode(true);
-    System.out.println(ult.getRangeInches());
+    System.out.println("distance: " + ult.getRangeInches());
     System.out.println();
   }
 }
